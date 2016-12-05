@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>A Book A Week</title>
+    <script type="text/javascript" src="vendor/angular.min.js"></script>
+    <script type="text/javascript" src="vendor/angular-route.min.js"></script>
+    <script type="text/javascript" src="scripts/client.js"></script>
+    <script type="text/javascript" src="scripts/controllers/bookShelf.controller.js"></script>
+    <script type="text/javascript" src="scripts/controllers/nightStand.controller.js"></script>
+    <script type="text/javascript" src="scripts/controllers/home.controller.js"></script>
+    <link rel="stylesheet" href="/vendor/bootstrap.min.css">
+  </head>
+  <body ng-app="myApp">
+    <div class="jumbotron">
+        <h1>A Book A Week</h1>
+    </div>
+    <header ng-include="'/views/templates/nav.html'"></header>
+    <main ng-view>
+
+    </main>
+  </body>
+</html>
