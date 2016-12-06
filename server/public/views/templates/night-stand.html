@@ -2,7 +2,10 @@
 <div>
   <button ng-click="ns.showSearch()">Add A New Book</button>
 </div>
+
+
 <div class="search" ng-show="ns.searchDisplay">
+
   <form ng-submit="ns.bookSearch()">
     <label for="newBookTitle">Title</label>
     <input name="newBookTitle" ng-model="ns.newBook.title" required>

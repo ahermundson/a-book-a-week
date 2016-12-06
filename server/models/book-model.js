@@ -1,8 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-
-// step 1: create the Schema
+//Book schema for subdocument in User books array
 var bookSchema = new Schema({
   title: {type: String, required: true},
   author: String,
@@ -11,7 +10,8 @@ var bookSchema = new Schema({
   book_finished_date: Date,
   book_thumbnail: String,
   isbn: Number,
-  currently_reading: {current_book: Boolean, page_at: Number}
+  currently_reading: {type: Boolean, default: true},
+  page_at: {type: Number, default: 0}
 });
 
 bookSchema.pre('save', function(next) {
