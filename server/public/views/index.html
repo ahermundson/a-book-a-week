@@ -5,19 +5,21 @@
     <title>A Book A Week</title>
     <script type="text/javascript" src="vendor/angular.min.js"></script>
     <script type="text/javascript" src="vendor/angular-route.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/2.1.0/angularfire.min.js"></script>
+    <script src="../scripts/config.js"></script>
     <script type="text/javascript" src="scripts/client.js"></script>
     <script type="text/javascript" src="scripts/controllers/bookShelf.controller.js"></script>
     <script type="text/javascript" src="scripts/controllers/nightStand.controller.js"></script>
     <script type="text/javascript" src="scripts/controllers/home.controller.js"></script>
     <link rel="stylesheet" href="/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="/styles/main.css">
   </head>
   <body ng-app="myApp">
-    <div class="jumbotron">
-        <h1>A Book A Week</h1>
-    </div>
-    <header ng-include="'/views/templates/nav.html'"></header>
+    <div ng-include="'/views/templates/header.html'"></div>
     <main ng-view>
 
     </main>
+    <!-- <footer ng-include="'/views/templates/footer.html'"></footer> -->
   </body>
 </html>

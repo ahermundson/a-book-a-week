@@ -1,1 +1,30 @@
 <h1>Night Stand</h1>
+<div>
+  <button ng-click="ns.showSearch()">Add A New Book</button>
+</div>
+<div class="search" ng-show="ns.searchDisplay">
+  <form ng-submit="ns.bookSearch()">
+    <label for="newBookTitle">Title</label>
+    <input name="newBookTitle" ng-model="ns.newBook.title" required>
+
+    <label for="newBookAuthor">Author</label>
+    <input name="newBookAuthor" ng-model="ns.newBook.author">
+    <button type="submit">Submit</button>
+  </form>
+
+  <div class="results">
+    <ul ng-repeat="books in ns.books track by $index">
+      <li>{{books.volumeInfo.title}}</li>
+      <ul>
+        <li>Authors</li>
+        <ul ng-repeat="authors in books.volumeInfo.authors track by $index">
+          <li>{{authors}}</li>
+        </ul>
+
+        <li>Pages: {{books.volumeInfo.pageCount}}</li>
+      </ul>
+      <button ng-click="ns.selectBook($index)">Select This Book</button>
+    </ul>
+
+  </div>
+</div>
