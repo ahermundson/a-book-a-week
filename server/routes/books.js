@@ -6,6 +6,7 @@ var User = require('../models/user');
 
 //Route to get all books ot display on book shelf. Should return users book array. Send this to factory so you can pick it off for the night stand
 router.get('/', function(req, res) {
+  console.log("Got to get in book route");
   User.findOne(
     { email: 'alex.hermundson@gmail.com' },
     { books: true},

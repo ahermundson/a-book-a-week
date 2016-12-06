@@ -8,11 +8,13 @@ myApp.controller("BookShelfController", ["$http", function($http) {
   function getBooks() {
     $http.get('/books')
     .then(function(response) {
-      self.collection = response.data;
-      console.log(self.collection);
+      self.collection = response.data.books;
+      console.log("Returned Collection :", self.collection);
     },
     function(err) {
       console.log("Error with put request: ", err);
     });
   }
+
+  getBooks();
 }]);
