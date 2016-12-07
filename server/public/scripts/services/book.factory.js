@@ -27,6 +27,17 @@ myApp.factory('BookFactory', ["$http", function($http) {
 
   }
 
+  function addSelectedBook(bookToAdd) {
+    console.log("Book selected: ", bookToAdd);
+    return $http.put('/books', bookToAdd)
+    .then(function(response) {
+      console.log("Put request successful");
+    },
+    function(err) {
+      console.log("Error with put request: ", err);
+    });
+  }
+
   //Public API that the controllers can access. Each function will return a promise
   var publicApi = {
     bookSearch: function(bookToSeachFor) {
@@ -34,7 +45,11 @@ myApp.factory('BookFactory', ["$http", function($http) {
     },
     bookData: function() {
       return books;
+    },
+    addSelectedBook: function(bookToAdd) {
+      return addSelectedBook(bookToAdd);
     }
+
   };
 
   return publicApi;

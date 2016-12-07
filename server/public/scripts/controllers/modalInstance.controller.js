@@ -14,4 +14,21 @@ myApp.controller('ModalCtrl', ['$uibModalInstance', 'BookFactory', function ($ui
       console.log("Books from BookFactory: ", self.books);
     });
   };
+
+  self.selectBook = function(index) {
+    self.close();
+    self.selectedBook = {
+      title: self.books[index].volumeInfo.title,
+      author: self.books[index].volumeInfo.authors[0],
+      pages: self.books[index].volumeInfo.pageCount,
+      book_start_date: new Date(),
+      book_thumbnail: self.books[index].volumeInfo.imageLinks.thumbnail,
+      isbn: self.books[index].volumeInfo.industryIdentifiers[0].identifier
+    }
+    BookFactory.addSelectedBook(self.selectedBook)
+    .then(function(response) {
+      console.log("Promise resolved");
+      self.books = [];
+    })
+  }
 }]);
