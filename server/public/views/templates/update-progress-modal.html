@@ -1,0 +1,15 @@
+<div class="modal-header">
+  <h3 class="modal-title" id="modal-title">Update Your Progress!</h3>
+</div>
+<div class="modal-body" id="modal-body">
+  <form>
+    <label for="updatedPageNumber">Current Page Number: </label>
+    <input name="updatedPageNumber" ng-model="vm.updatedPageNumber" required>
+
+    <div class="modal-footer">
+      <button class="btn btn-primary" type="button" ng-click="vm.updatePage()">OK</button>
+      <button class="btn btn-warning" type="button" ng-click="vm.close()">Cancel</button>
+    </div>
+
+  </form>
+</div>

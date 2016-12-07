@@ -20,6 +20,21 @@ router.get('/', function(req, res) {
   )
 });
 
+//router to update page number of current book
+router.put('/update', function(req, res) {
+  console.log("Got to correct books router: ", req.body);
+  User.findOneAndUpdate({ '_id': "5846d71b5de4b846897b0529", 'books._id': '58470cf038d50e0b1d9108c6'},
+    { $set: {'books.$.page_at' : req.body.updatedPageNumber }},
+    function(err) {
+      if(err) {
+        console.log('Put ERR: ', err);
+        res.sendStatus(500);
+      } else {
+        res.sendStatus(200);
+      }
+    }
+  )
+});
 
 //Route to add a new book to the users profile
 router.put('/', function(req, res) {

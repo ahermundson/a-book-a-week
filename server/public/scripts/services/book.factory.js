@@ -57,6 +57,20 @@ myApp.factory('BookFactory', ["$http", function($http) {
     });
   };
 
+
+  //Update users progress on current book
+  //Update users progress on current book
+  function updateBookProgress(pageNumber) {
+    console.log("Page: ", pageNumber.updatedPageNumber);
+    return $http.put('/books/update', pageNumber)
+    .then(function(response) {
+      console.log("Put request successful");
+    },
+    function(err) {
+      console.log("Error with put request: ", err);
+    });
+  };
+
   //Get the book the user is currently reading and return it to the night stand controller
   function getCurrentBook() {
     return "collection";
@@ -78,8 +92,8 @@ myApp.factory('BookFactory', ["$http", function($http) {
     addSelectedBook: function(bookToAdd) {
       return addSelectedBook(bookToAdd);
     },
-    getCurrentBook: function() {
-      return getCurrentBook();
+    updateProgress: function(pageNumber) {
+      return updateBookProgress(pageNumber);
     }
   };
 
