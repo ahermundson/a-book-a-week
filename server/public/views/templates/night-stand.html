@@ -1,14 +1,22 @@
 <h1>Night Stand</h1>
 
-
-<div class="nightStand">
-
-
-</div>
-
-
 <div class="modal-demo" ng-controller="MainCtrl as vm">
 
     <button type="button" class="btn btn-default" ng-click="vm.open('lg')">Add A New Book</button>
 
+</div>
+
+<div class="nightStand">
+  <h3 class="text-center">Currently Reading</h3>
+
+  <div class="current_book_info">
+    <img ng-src="{{ns.currentBook.book_thumbnail}}" alt="" />
+    <ul>
+      <li>Title: {{ns.currentBook.title}}</li>
+      <li>Author: {{ns.currentBook.author}}</li>
+      <li>Progress: On page {{ns.currentBook.page_at}} of {{ns.currentBook.pages}}</li>
+    </ul>
+    <button type="button" name="update_progress">Update Your Progress</button>
+    <button type="button" name="finished_book">I've Finished This Book</button>
+  </div>
 </div>

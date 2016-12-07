@@ -18,11 +18,6 @@ myApp.config(['$routeProvider', function($routeProvider) {
             controller: 'NightStandController',
             controllerAs: 'ns'
         })
-        .when('/addBookModal', {
-            templateUrl: '/views/templates/addBookModal.html',
-            controller: 'ModalInstanceController',
-            controllerAs: 'mi'
-        })
         .otherwise({
             redirectTo: '/home'
         });

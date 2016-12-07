@@ -1,1 +1,4 @@
-
+.current_book_info {
+  display: flex;
+  justify-content: center;
+}

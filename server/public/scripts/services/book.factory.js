@@ -10,7 +10,6 @@ myApp.factory('BookFactory', ["$http", function($http) {
     return $http.get('/books')
     .then(function(response) {
       collection = response.data.books;
-      console.log("Returned Collection In Factory :", collection);
       return collection;
     },
     function(err) {
@@ -56,7 +55,14 @@ myApp.factory('BookFactory', ["$http", function($http) {
     function(err) {
       console.log("Error with put request: ", err);
     });
-  }
+  };
+
+  //Get the book the user is currently reading and return it to the night stand controller
+  function getCurrentBook() {
+    return "collection";
+  };
+
+
 
   //Public API that the controllers can access. Each function will return a promise
   var publicApi = {
@@ -71,8 +77,10 @@ myApp.factory('BookFactory', ["$http", function($http) {
     },
     addSelectedBook: function(bookToAdd) {
       return addSelectedBook(bookToAdd);
+    },
+    getCurrentBook: function() {
+      return getCurrentBook();
     }
-
   };
 
   return publicApi;
