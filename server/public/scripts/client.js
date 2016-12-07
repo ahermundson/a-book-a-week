@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngRoute']);
+var myApp = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 
 myApp.config(['$routeProvider', function($routeProvider) {
 
@@ -17,6 +17,11 @@ myApp.config(['$routeProvider', function($routeProvider) {
             templateUrl: '/views/templates/night-stand.html',
             controller: 'NightStandController',
             controllerAs: 'ns'
+        })
+        .when('/addBookModal', {
+            templateUrl: '/views/templates/addBookModal.html',
+            controller: 'ModalInstanceController',
+            controllerAs: 'mi'
         })
         .otherwise({
             redirectTo: '/home'

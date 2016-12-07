@@ -1,4 +1,4 @@
-myApp.controller("NightStandController", ["$http", function($http) {
+myApp.controller("NightStandController", ["$http", "$uibModal", "$log", function($http, $uibModal, $log) {
   console.log("in the night stand controller");
 
   var self = this;
@@ -66,4 +66,43 @@ myApp.controller("NightStandController", ["$http", function($http) {
     //getCurrentBook();
   }
 
+  //start of modal
+
+  self.animationsEnabled = true;
+
+  self.open = function (size, parentSelector) {
+    var parentElem = parentSelector ?
+      angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+    var modalInstance = $uibModal.open({
+      animation: self.animationsEnabled,
+      ariaLabelledBy: 'modal-title',
+      ariaDescribedBy: 'modal-body',
+      templateUrl: '../views/templates/addBookModal.html',
+      controller: function($uibModalInstance) {
+        self.cancel = function () {
+            alert('Cancel')
+            $uibModalInstance.dismiss('cancel');
+        };
+      },
+      size: size,
+      appendTo: parentElem,
+      resolve: {
+        items: function () {
+          return self.items;
+        }
+      }
+    });
+
+    modalInstance.result.then(function (selectedItem) {
+      self.selected = selectedItem;
+    }, function () {
+      $log.info('Modal dismissed at: ' + new Date());
+    });
+  };
+
+
 }]);
+
+
+
+// }]);

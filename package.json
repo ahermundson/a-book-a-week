@@ -10,11 +10,14 @@
   "license": "ISC",
   "dependencies": {
     "angular": "^1.5.9",
+    "angular-animate": "^1.5.9",
     "angular-route": "^1.5.9",
     "body-parser": "^1.15.2",
     "bootstrap": "^3.3.7",
+    "e": "0.0.4",
     "express": "^4.14.0",
     "firebase-admin": "^4.0.3",
+    "jquery": "^3.1.1",
     "mongoose": "^4.7.1"
   }
 }

@@ -1,7 +1,7 @@
 <h1>Night Stand</h1>
-<div>
+<!-- <div>
   <button ng-click="ns.showSearch()">Add A New Book</button>
-</div>
+</div> -->
 
 
 <div class="search" ng-show="ns.searchDisplay">
@@ -30,4 +30,12 @@
     </ul>
 
   </div>
+
+</div>
+
+
+<div class="modal-demo" ng-controller="MainCtrl as mc">
+
+    <button type="button" class="btn btn-default" ng-click="mc.open('lg')">Add A New Book</button>
+
 </div>
