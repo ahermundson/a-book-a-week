@@ -1,21 +1,19 @@
-myApp.controller("NightStandController", ["$http", "BookFactory", '$uibModal', function($http, BookFactory, $uibModal) {
+myApp.controller("NightStandController", ["$http", "BookFactory", "UserFactory", '$uibModal', function($http, BookFactory, UserFactory, $uibModal) {
 
   var self = this;
 
 
 
   function getBooks() {
-    BookFactory.getBooks()
-    .then(function(response) {
-      self.collection = response;
-      console.log("Collection in NightStand Controller: ", self.collection);
-      self.currentBook = findCurrentBook(self.collection);
-      console.log("CurrentBook: ", self.currentBook);
-      BookFactory.currentBook = self.currentBook;
-    });
+    self.collection = UserFactory.getBooks();
+    console.log("Collection in NightStand Controller: ", self.collection);
+    self.currentBook = findCurrentBook(self.collection);
+    console.log("CurrentBook: ", self.currentBook);
+    BookFactory.currentBook = self.currentBook;
+
 
   };
-  // getBooks();
+  getBooks();
 
   function findCurrentBook(collection) {
     for (var i = 0; i < collection.length; i++) {

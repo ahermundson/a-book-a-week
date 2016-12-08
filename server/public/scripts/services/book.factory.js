@@ -119,6 +119,10 @@ myApp.factory('BookFactory', ["$http", "UserFactory", function($http, UserFactor
     },
     updateProgress: function(pageNumber) {
       return updateBookProgress(pageNumber);
+    },
+    sendUserData: function(userData) {
+      collection = userData;
+      console.log(collection);
     }
   };
 
