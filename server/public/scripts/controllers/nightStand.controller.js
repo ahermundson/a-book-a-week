@@ -26,6 +26,14 @@ myApp.controller("NightStandController", ["$http", "BookFactory", '$uibModal', f
     return 0;
   }
 
+  self.openAddBook = function () {
+    var modalInstance = $uibModal.open({
+      templateUrl: './views/templates/add-book-modal.html',
+      controller: 'ModalCtrl',
+      controllerAs: 'mc'
+    });
+  };
+
   self.open = function () {
     var modalInstance = $uibModal.open({
       templateUrl: './views/templates/update-progress-modal.html',
