@@ -4,6 +4,7 @@ myApp.factory('BookFactory', ["$http", function($http) {
   //Variables global to the factory
   var books;
   var collection;
+  var book_id;
   //get users book list from book shelf
   function getBooks() {
 
@@ -59,10 +60,11 @@ myApp.factory('BookFactory', ["$http", function($http) {
 
 
   //Update users progress on current book
-  //Update users progress on current book
   function updateBookProgress(pageNumber) {
+    book_id = getBookId(collection);
+    console.log(book_id);
     console.log("Page: ", pageNumber.updatedPageNumber);
-    return $http.put('/books/update', pageNumber)
+    return $http.put('/books/update/' + book_id, pageNumber)
     .then(function(response) {
       console.log("Put request successful");
     },
@@ -71,12 +73,14 @@ myApp.factory('BookFactory', ["$http", function($http) {
     });
   };
 
-  //Get the book the user is currently reading and return it to the night stand controller
-  function getCurrentBook() {
-    return "collection";
-  };
 
-
+  function getBookId(collection) {
+    for (var i = 0; i < collection.length; i++) {
+      if(collection[i].currently_reading === true) {
+        return collection[i]._id;
+      }
+    }
+  }
 
   //Public API that the controllers can access. Each function will return a promise
   var publicApi = {

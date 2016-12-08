@@ -11,7 +11,9 @@ myApp.controller("NightStandController", ["$http", "BookFactory", function($http
       console.log("Collection in BookShelf Controller: ", self.collection);
       self.currentBook = findCurrentBook(self.collection);
       console.log("CurrentBook: ", self.currentBook);
+      BookFactory.currentBook = self.currentBook;
     });
+
   };
   getBooks();
 
