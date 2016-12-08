@@ -8,14 +8,14 @@ myApp.controller("NightStandController", ["$http", "BookFactory", '$uibModal', f
     BookFactory.getBooks()
     .then(function(response) {
       self.collection = response;
-      console.log("Collection in BookShelf Controller: ", self.collection);
+      console.log("Collection in NightStand Controller: ", self.collection);
       self.currentBook = findCurrentBook(self.collection);
       console.log("CurrentBook: ", self.currentBook);
       BookFactory.currentBook = self.currentBook;
     });
 
   };
-  getBooks();
+  // getBooks();
 
   function findCurrentBook(collection) {
     for (var i = 0; i < collection.length; i++) {

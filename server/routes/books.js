@@ -40,7 +40,7 @@ router.put('/update/:book_id', function(req, res) {
 //Route to add a new book to the users profile
 router.put('/', function(req, res) {
   User.findOneAndUpdate(
-    { email: 'alex.hermundson@gmail.com'},
+    { email: req.decodedToken.email},
     { $push: { books: req.body } },
     function(err) {
       if(err) {

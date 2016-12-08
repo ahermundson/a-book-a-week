@@ -1,5 +1,6 @@
-myApp.factory('BookFactory', ["$http", function($http) {
+myApp.factory('BookFactory', ["$http", "UserFactory", function($http, UserFactory) {
   console.log("Book Factory Running");
+
 
   //Variables global to the factory
   var books;
@@ -8,20 +9,31 @@ myApp.factory('BookFactory', ["$http", function($http) {
   //get users book list from book shelf
   function getBooks() {
     console.log("in get books in book factory");
-    return $http.get('/books')
-    .then(function(response) {
-      collection = response.data.books;
-      return collection;
-    },
-    function(err) {
-      console.log("Error with put request: ", err);
-    });
+    return UserFactory.getCurrentUser().then(function(currentUser) {
+      console.log(currentUser);
+      return currentUser.getToken().then(function(idToken) {
+        $http({
+          method: 'GET',
+          url: '/books',
+          headers: {
+            id_token: idToken
+          }
+          }).then(function(response) {
+            collection = response.data.books;
+            console.log("Collection from database: ", collection);
+            return collection;
+          },
+          function(err) {
+            console.log("Error with put request: ", err);
+          });
+      });
+    })
+
   }
 
 
   //search for book. Coming from modal.
   function bookSearch(bookToSearchFor) {
-    console.log("In Book Factory bookSearch function: ", bookToSearchFor);
     //base url for Google API
     var baseURL = 'https://www.googleapis.com/books/v1/volumes?q=';
 
@@ -38,7 +50,6 @@ myApp.factory('BookFactory', ["$http", function($http) {
         url: request
       }).then(function(response) {
         books = response.data.items;
-        console.log("Books array from API: ", books);
       });
 
       return promise;
@@ -49,12 +60,22 @@ myApp.factory('BookFactory', ["$http", function($http) {
   //Add selected book to users database
   function addSelectedBook(bookToAdd) {
     console.log("Book selected: ", bookToAdd);
-    return $http.put('/books', bookToAdd)
-    .then(function(response) {
-      console.log("Put request successful");
-    },
-    function(err) {
-      console.log("Error with put request: ", err);
+    var currentUser = UserFactory.getCurrentUser();
+    console.log(currentUser);
+    return currentUser.getToken().then(function(idToken) {
+      $http({
+        method: 'PUT',
+        url: '/books',
+        data: bookToAdd,
+        headers: {
+          id_token: idToken
+        }
+        }).then(function(response) {
+          console.log("Put request successful");
+        },
+        function(err) {
+          console.log("Error with put request: ", err);
+        });
     });
   };
 
@@ -81,6 +102,7 @@ myApp.factory('BookFactory', ["$http", function($http) {
       }
     }
   }
+
 
   //Public API that the controllers can access. Each function will return a promise
   var publicApi = {

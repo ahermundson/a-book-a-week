@@ -5,13 +5,13 @@ myApp.controller("BookShelfController", ["$http", "BookFactory", function($http,
   self.collection = [];
 
 
-  function getBooks() {
-    BookFactory.getBooks()
-    .then(function(response) {
-      console.log("Response from promise:", response);
-      self.collection = response;
-      console.log("Collection in BookShelf Controller: ", self.collection);
-    });
-  };
-  getBooks();
+  // function getBooks() {
+  //   BookFactory.getBooks()
+  //   .then(function(response) {
+  //     console.log("Response from promise:", response);
+  //     self.collection = response;
+  //     console.log("Collection in BookShelf Controller: ", self.collection);
+  //   });
+  // };
+  // getBooks();
 }]);

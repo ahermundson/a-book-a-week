@@ -1,20 +1,21 @@
 myApp.controller('ModalCtrl', ['$uibModalInstance', 'BookFactory', function ($uibModalInstance, BookFactory) {
   var self = this;
 
+
+  //Close Modal on click of cancel
   self.close = function () {
     $uibModalInstance.close();
   };
 
+  //Search for books by title / author
   self.bookSearch = function() {
-    console.log("Book To Search For: ", self.bookToSearchFor);
     BookFactory.bookSearch(self.bookToSearchFor)
     .then(function(response) {
-      console.log("Response back from BookFactory");
       self.books = BookFactory.bookData();
-      console.log("Books from BookFactory: ", self.books);
     });
   };
 
+  //Select book from the books returned from a search
   self.selectBook = function(index) {
     self.close();
     self.selectedBook = {
@@ -27,7 +28,6 @@ myApp.controller('ModalCtrl', ['$uibModalInstance', 'BookFactory', function ($ui
     }
     BookFactory.addSelectedBook(self.selectedBook)
     .then(function(response) {
-      console.log("Promise resolved");
       self.books = [];
     })
   }
