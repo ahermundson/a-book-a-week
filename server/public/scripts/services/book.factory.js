@@ -61,7 +61,6 @@ myApp.factory('BookFactory', ["$http", "UserFactory", function($http, UserFactor
   function addSelectedBook(bookToAdd) {
     console.log("Book selected: ", bookToAdd);
     var currentUser = UserFactory.getCurrentUser();
-    console.log(currentUser);
     return currentUser.getToken().then(function(idToken) {
       $http({
         method: 'PUT',

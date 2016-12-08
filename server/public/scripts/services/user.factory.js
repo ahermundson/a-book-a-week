@@ -35,27 +35,27 @@ myApp.factory('UserFactory', ["$firebaseAuth", "$http", function($firebaseAuth, 
     // firebaseUser will be null if not logged in
 
     console.log("State Changed");
-    if(firebaseUser) {
-
-      currentUser = firebaseUser;
-      // This is where we make our call to our server
-      firebaseUser.getToken().then(function(idToken){
-        $http({
-          method: 'GET',
-          url: '/users',
-          headers: {
-            id_token: idToken
-          }
-        }).then(function(response){
-          console.log("got response from state change: ", response.data);
-          self.userData = response.data;
-        });
-      });
-    } else {
-      console.log('Not logged in or not authorized.');
-      currentUser = {};
-      self.userData = [];
-    }
+    // if(firebaseUser) {
+    //
+    //   currentUser = firebaseUser;
+    //   // This is where we make our call to our server
+    //   firebaseUser.getToken().then(function(idToken){
+    //     $http({
+    //       method: 'GET',
+    //       url: '/users',
+    //       headers: {
+    //         id_token: idToken
+    //       }
+    //     }).then(function(response){
+    //       console.log("got response from state change: ", response.data);
+    //       self.userData = response.data;
+    //     });
+    //   });
+    // } else {
+    //   console.log('Not logged in or not authorized.');
+    //   currentUser = {};
+    //   self.userData = [];
+    // }
 
   });
 
@@ -77,6 +77,7 @@ myApp.factory('UserFactory', ["$firebaseAuth", "$http", function($firebaseAuth, 
     }
   }
 
+
   var publicApi = {
     logIn: function() {
       return logIn();
@@ -86,6 +87,9 @@ myApp.factory('UserFactory', ["$firebaseAuth", "$http", function($firebaseAuth, 
     },
     getCurrentUser: function() {
       return currentUser;
+    },
+    getBooks: function() {
+      return self.userData.books;
     }
   }
   return publicApi;
