@@ -7,7 +7,7 @@ myApp.factory('BookFactory', ["$http", function($http) {
   var book_id;
   //get users book list from book shelf
   function getBooks() {
-
+    console.log("in get books in book factory");
     return $http.get('/books')
     .then(function(response) {
       collection = response.data.books;

@@ -1,1 +1,7 @@
-<h1>Home</h1>
+<div>
+  <h1>Home</h1>
+  <button ng-click="hm.signUp()">Sign Up</button>
+  <button ng-click='hm.logIn()'>Login</button>
+  <button ng-click="hm.logOut()">Logout</button>
+  <p ng-show="hm.loggedIn">Welcome Back: {{hm.userData.first_name}}</p>
+</div>

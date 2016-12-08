@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
+var myApp = angular.module('myApp', ['ngRoute', 'ui.bootstrap', 'firebase']);
 
 myApp.config(['$routeProvider', function($routeProvider) {
 
@@ -6,7 +6,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
         .when('/home', {
             templateUrl: '/views/templates/home.html',
             controller: 'HomeController',
-            controllerAs: 'home'
+            controllerAs: 'hm'
         })
         .when('/book-shelf', {
             templateUrl: '/views/templates/book-shelf.html',
