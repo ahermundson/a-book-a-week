@@ -84,13 +84,19 @@ myApp.factory('BookFactory', ["$http", "UserFactory", function($http, UserFactor
     book_id = getBookId(collection);
     console.log(book_id);
     console.log("Page: ", pageNumber.updatedPageNumber);
-    return $http.put('/books/update/' + book_id, pageNumber)
-    .then(function(response) {
-      console.log("Put request successful");
-    },
-    function(err) {
-      console.log("Error with put request: ", err);
-    });
+    var currentUser = UserFactory.getCurrentUser();
+    return currentUser.getToken().then(function(idToken) {
+      $http({
+        method: 'PUT',
+        url: '/books/update/' + book_id,
+        data: pageNumber
+      }).then(function(response) {
+        console.log("Put request successful");
+      },
+      function(err) {
+        console.log("Error with put request: ", err);
+      });
+    })
   };
 
 
