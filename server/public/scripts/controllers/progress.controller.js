@@ -8,5 +8,9 @@ myApp.controller('ProgressCtrl', ['$uibModal', function ($uibModal) {
       controller: 'ProgressUpdateController',
       controllerAs: 'vm'
     });
+
+    modalInstance.result.then(function(page) {
+      console.log(page);
+    })
   };
 }]);

@@ -1,4 +1,4 @@
-myApp.controller("NightStandController", ["$http", "BookFactory", function($http, BookFactory) {
+myApp.controller("NightStandController", ["$http", "BookFactory", '$uibModal', function($http, BookFactory, $uibModal) {
 
   var self = this;
 
@@ -26,5 +26,17 @@ myApp.controller("NightStandController", ["$http", "BookFactory", function($http
     return 0;
   }
 
+  self.open = function () {
+    var modalInstance = $uibModal.open({
+      templateUrl: './views/templates/update-progress-modal.html',
+      controller: 'ProgressUpdateController',
+      controllerAs: 'vm'
+    });
+
+    modalInstance.result.then(function(page) {
+      console.log(page);
+      getBooks();
+    })
+  };
 
 }]);

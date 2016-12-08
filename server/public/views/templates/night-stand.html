@@ -16,8 +16,8 @@
       <li>Author: {{ns.currentBook.author}}</li>
       <li>Progress: On page {{ns.currentBook.page_at}} of {{ns.currentBook.pages}}</li>
     </ul>
-    <div ng-controller="ProgressCtrl as pc">
-      <button type="button" name="update_progress" ng-click="pc.open('lg')">Update Your Progress</button>
+    <div>
+      <button type="button" name="update_progress" ng-click="ns.open('lg')">Update Your Progress</button>
       <button type="button" name="finished_book">I've Finished This Book</button>
     </div>
   </div>

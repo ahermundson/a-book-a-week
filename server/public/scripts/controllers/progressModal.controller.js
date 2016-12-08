@@ -6,7 +6,7 @@ myApp.controller('ProgressUpdateController', ['$uibModalInstance', 'BookFactory'
   };
 
   self.updatePage = function() {
-    // $uibModalInstance.close(self.updatedPageNumber);
+    $uibModalInstance.close(self.updatedPageNumber);
     console.log("Book factory current book: ", BookFactory.currentBook);
     self.updatePageNumber = {
       updatedPageNumber: Number(self.updatedPageNumber)
