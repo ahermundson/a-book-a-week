@@ -33,7 +33,6 @@ myApp.factory('UserFactory', ["$firebaseAuth", "$http", "$q", function($firebase
   // the same things in the login and the logout code
   auth.$onAuthStateChanged(function(firebaseUser){
     // firebaseUser will be null if not logged in
-
     console.log("State Changed");
     // if(firebaseUser) {
     //

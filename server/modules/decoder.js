@@ -21,7 +21,10 @@ var tokenDecoder = function(req, res, next){
       console.log('User token could not be verified');
       res.sendStatus(403);
     });
-  } 
+  } else {
+    res.sendStatus(403);
+  }
+
 }
 
 module.exports = { token: tokenDecoder };

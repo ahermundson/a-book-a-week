@@ -82,23 +82,30 @@ myApp.factory('BookFactory', ["$http", "UserFactory", "$q", function($http, User
 
 
   //Update users progress on current book
-  function updateBookProgress(pageNumber) {
+  function updateBookProgress(pageNumber, currentUser) {
     book_id = getBookId(collection);
-    console.log(book_id);
-    console.log("Page: ", pageNumber.updatedPageNumber);
-    var currentUser = UserFactory.getCurrentUser();
-    return currentUser.getToken().then(function(idToken) {
-      $http({
-        method: 'PUT',
-        url: '/books/update/' + book_id,
-        data: pageNumber
-      }).then(function(response) {
-        console.log("Put request successful");
-      },
-      function(err) {
-        console.log("Error with put request: ", err);
-      });
-    })
+    // console.log(book_id);
+    // console.log("Page: ", pageNumber.updatedPageNumber);
+    // var deferred = $q.defer();
+    return currentUser.user.getToken()
+      .then(function(idToken) {
+        console.log("Before Put in Book Factory");
+        $http({
+          method: 'PUT',
+          url: '/books/update/' + book_id,
+          data: pageNumber,
+          headers: {
+            id_token: idToken
+          }
+        }).then(function(response) {
+          console.log("Put request successful");
+        },
+        function(err) {
+          console.log("Error with put request: ", err);
+        });
+    });
+    // deferred.resolve("Put finished");
+    // return deferred.promise;
   };
 
   //Get the mongo ID of book currently being read
@@ -141,8 +148,8 @@ myApp.factory('BookFactory', ["$http", "UserFactory", "$q", function($http, User
     addSelectedBook: function(bookToAdd) {
       return addSelectedBook(bookToAdd);
     },
-    updateProgress: function(pageNumber) {
-      return updateBookProgress(pageNumber);
+    updateProgress: function(pageNumber, currentUser) {
+      return updateBookProgress(pageNumber, currentUser);
     },
     sendUserData: function(userData) {
       collection = userData;

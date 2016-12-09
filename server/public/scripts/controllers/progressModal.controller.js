@@ -1,4 +1,4 @@
-myApp.controller('ProgressUpdateController', ['$uibModalInstance', 'BookFactory', function ($uibModalInstance, BookFactory) {
+myApp.controller('ProgressUpdateController', ['$uibModalInstance', 'BookFactory', 'UserFactory', function ($uibModalInstance, BookFactory, UserFactory) {
   var self = this;
 
   self.close = function () {
@@ -12,9 +12,10 @@ myApp.controller('ProgressUpdateController', ['$uibModalInstance', 'BookFactory'
       updatedPageNumber: Number(self.updatedPageNumber)
     }
     console.log(self.updatePageNumber.updatedPageNumber);
-    BookFactory.updateProgress(self.updatePageNumber)
-    .then(function(response) {
-      console.log("Response back from BookFactory");
+    UserFactory.getCurrentUser()
+    .then(function(user) {
+      BookFactory.updateProgress(self.updatePageNumber, user);
     });
+
   }
 }]);
