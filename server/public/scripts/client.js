@@ -1,4 +1,5 @@
-var myApp = angular.module('myApp', ['ngRoute', 'ui.bootstrap', 'firebase']);
+var myApp = angular.module('myApp', ['ngRoute', 'ui.bootstrap', 'angularMoment', 'firebase']);
+
 
 myApp.config(['$routeProvider', function($routeProvider) {
 

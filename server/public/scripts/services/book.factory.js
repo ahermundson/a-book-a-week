@@ -7,28 +7,24 @@ myApp.factory('BookFactory', ["$http", "UserFactory", function($http, UserFactor
   var collection;
   var book_id;
   //get users book list from book shelf
-  function getBooks() {
+  function getBooks(currentUser) {
     console.log("in get books in book factory");
-    return UserFactory.getCurrentUser().then(function(currentUser) {
-      console.log(currentUser);
-      return currentUser.getToken().then(function(idToken) {
-        $http({
-          method: 'GET',
-          url: '/books',
-          headers: {
-            id_token: idToken
-          }
-          }).then(function(response) {
-            collection = response.data.books;
-            console.log("Collection from database: ", collection);
-            return collection;
-          },
-          function(err) {
-            console.log("Error with put request: ", err);
-          });
-      });
-    })
-
+    return currentUser.getToken().then(function(idToken) {
+      $http({
+        method: 'GET',
+        url: '/books',
+        headers: {
+          id_token: idToken
+        }
+        }).then(function(response) {
+          collection = response.data.books;
+          console.log("Collection from database: ", collection);
+          return collection;
+        },
+        function(err) {
+          console.log("Error with put request: ", err);
+        });
+    });
   }
 
 
@@ -111,8 +107,8 @@ myApp.factory('BookFactory', ["$http", "UserFactory", function($http, UserFactor
 
   //Public API that the controllers can access. Each function will return a promise
   var publicApi = {
-    getBooks: function() {
-      return getBooks();
+    getBooks: function(currentUser) {
+      return getBooks(currentUser);
     },
     bookSearch: function(bookToSeachFor) {
       return bookSearch(bookToSeachFor);

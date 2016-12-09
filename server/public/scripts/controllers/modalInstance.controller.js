@@ -22,10 +22,11 @@ myApp.controller('ModalCtrl', ['$uibModalInstance', 'BookFactory', function ($ui
       title: self.books[index].volumeInfo.title,
       author: self.books[index].volumeInfo.authors[0],
       pages: self.books[index].volumeInfo.pageCount,
-      book_start_date: new Date(),
+      book_start_date: moment().format(),
+      finished_by_goal: moment().add(1, 'week'),
       book_thumbnail: self.books[index].volumeInfo.imageLinks.thumbnail,
       isbn: self.books[index].volumeInfo.industryIdentifiers[0].identifier
-    }
+    };
     BookFactory.addSelectedBook(self.selectedBook)
     .then(function(response) {
       self.books = [];

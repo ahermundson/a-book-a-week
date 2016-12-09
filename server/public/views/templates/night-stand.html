@@ -7,6 +7,7 @@
 </div>
 
 <div class="nightStand">
+  <!-- <time>{{ns.daysToGoal}}</time> -->
   <h3 class="text-center">Currently Reading</h3>
 
   <div class="current_book_info">
@@ -15,6 +16,8 @@
       <li>Title: {{ns.currentBook.title}}</li>
       <li>Author: {{ns.currentBook.author}}</li>
       <li>Progress: On page {{ns.currentBook.page_at}} of {{ns.currentBook.pages}}</li>
+      <li title="Number Includes Today">Days Left To Finish: {{ns.daysToGoal}}</li>
+      <li>Pages to Read Per Day: {{ns.pagesPerDay}}</li>
     </ul>
     <div>
       <button type="button" name="update_progress" ng-click="ns.open('lg')">Update Your Progress</button>

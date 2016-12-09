@@ -1,4 +1,4 @@
-myApp.factory('UserFactory', ["$firebaseAuth", "$http", function($firebaseAuth, $http) {
+myApp.factory('UserFactory', ["$firebaseAuth", "$http", "$q", function($firebaseAuth, $http, $q) {
   console.log("User Factory Running");
   var auth = $firebaseAuth();
   var currentUser = {};
@@ -68,14 +68,17 @@ myApp.factory('UserFactory', ["$firebaseAuth", "$http", function($firebaseAuth, 
   };
 
   function getCurrentUser() {
+    var deferred = $q.defer();
     if (currentUser !== undefined) {
-      return currentUser;
+      deferred.resolve(currentUser);
+      return deferred.promise;
     } else {
       return logIn().then(function() {
-        return currentUser;
+        deferred.resolve(currentUser);
+        return deferred.promise;
       })
     }
-  }
+  };
 
 
   var publicApi = {
@@ -86,7 +89,7 @@ myApp.factory('UserFactory', ["$firebaseAuth", "$http", function($firebaseAuth, 
       return logOut();
     },
     getCurrentUser: function() {
-      return currentUser;
+      return getCurrentUser();
     },
     getBooks: function() {
       return self.userData.books;
