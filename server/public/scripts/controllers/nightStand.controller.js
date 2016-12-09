@@ -4,11 +4,6 @@ myApp.controller("NightStandController", ["$http", "BookFactory", "UserFactory",
 
   function getBooks() {
     console.log("running get books in nightstand controller");
-    // self.collection = UserFactory.getBooks();
-    // console.log("Collection in NightStand Controller: ", self.collection);
-    // self.currentBook = findCurrentBook(self.collection);
-    // console.log("CurrentBook: ", self.currentBook);
-    // BookFactory.currentBook = self.currentBook;
 
     // BookFactory.getBooks()
     // .then(function(response) {
@@ -24,7 +19,14 @@ myApp.controller("NightStandController", ["$http", "BookFactory", "UserFactory",
     // });
 
     UserFactory.getCurrentUser().then(function(user) {
-        console.log("User from user.factory: ", user.user.email);
+        console.log("User from user.factory: ", user);
+        BookFactory.getBooks(user)
+        .then(function() {
+          console.log("Books should be in factory");
+          BookFactory.getCurrentBook().then(function(currentBook) {
+            self.currentBook = currentBook;
+          });
+        });
     });
 
   };

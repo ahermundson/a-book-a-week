@@ -9,7 +9,8 @@ myApp.factory('BookFactory', ["$http", "UserFactory", function($http, UserFactor
   //get users book list from book shelf
   function getBooks(currentUser) {
     console.log("in get books in book factory");
-    return currentUser.getToken().then(function(idToken) {
+    // console.log("Current User from param: ", currentUser);
+    return currentUser.user.getToken().then(function(idToken) {
       $http({
         method: 'GET',
         url: '/books',
@@ -95,7 +96,7 @@ myApp.factory('BookFactory', ["$http", "UserFactory", function($http, UserFactor
     })
   };
 
-
+  //Get the mongo ID of book currently being read
   function getBookId(collection) {
     for (var i = 0; i < collection.length; i++) {
       if(collection[i].currently_reading === true) {
