@@ -6,11 +6,11 @@ myApp.factory('BookFactory', ["$http", "UserFactory", "$q", function($http, User
   var books;
   var collection;
   var book_id;
-  //get users book list from book shelf
+  //get users book list from database
   function getBooks(currentUser) {
     console.log("in get books in book factory");
     var deferred = $q.defer();
-    return currentUser.user.getToken()
+    currentUser.user.getToken()
     .then(function(idToken) {
       $http({
         method: 'GET',
@@ -21,13 +21,16 @@ myApp.factory('BookFactory', ["$http", "UserFactory", "$q", function($http, User
         }).then(function(response) {
           collection = response.data.books;
           console.log("Collection from database: ", collection);
+          //storing collection to send back to controller
           deferred.resolve(collection)
-          return deferred.promise;
         },
         function(err) {
           console.log("Error with put request: ", err);
         });
     });
+    //returning book collection to nightstand controller
+    return deferred.promise;
+
   }
 
 
