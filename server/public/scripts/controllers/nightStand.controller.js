@@ -5,26 +5,19 @@ myApp.controller("NightStandController", ["$http", "BookFactory", "UserFactory",
   function getBooks() {
     console.log("running get books in nightstand controller");
 
-    // BookFactory.getBooks()
-    // .then(function(response) {
-    //   self.collection = response;
-    //   self.currentBook = findCurrentBook(self.collection);
-    //   console.log("CurrentBook: ", self.currentBook);
-    //   self.daysToGoal = getTimeRemaining(moment(self.currentBook.finished_by_goal).format("MM-DD-YYYY"));
-    //   console.log(moment(self.currentBook.finished_by_goal).format("MM-DD-YYYY"));
-    //   console.log("Days to Goal: ", self.daysToGoal);
-    //   self.pagesLeft = Number(self.currentBook.pages) - Number(self.currentBook.page_at);
-    //   self.pagesPerDay = pagesToReadPerDay(self.daysToGoal, self.pagesLeft);
-    //
-    // });
-
     UserFactory.getCurrentUser().then(function(user) {
         console.log("User from user.factory: ", user);
         BookFactory.getBooks(user)
-        .then(function() {
+        .then(function(response) {
           console.log("Books should be in factory");
           BookFactory.getCurrentBook().then(function(currentBook) {
             self.currentBook = currentBook;
+            console.log("Current Book From Book Factory: ", self.currentBook);
+            self.daysToGoal = getTimeRemaining(moment(self.currentBook.finished_by_goal).format("MM-DD-YYYY"));
+            console.log(moment(self.currentBook.finished_by_goal).format("MM-DD-YYYY"));
+            console.log("Days to Goal: ", self.daysToGoal);
+            self.pagesLeft = Number(self.currentBook.pages) - Number(self.currentBook.page_at);
+            self.pagesPerDay = pagesToReadPerDay(self.daysToGoal, self.pagesLeft);
           });
         });
     });
@@ -32,14 +25,7 @@ myApp.controller("NightStandController", ["$http", "BookFactory", "UserFactory",
   };
   getBooks();
 
-  function findCurrentBook(collection) {
-    for (var i = 0; i < collection.length; i++) {
-      if (collection[i].currently_reading === true) {
-        return collection[i];
-      }
-    }
-    return 0;
-  }
+
 
   self.openAddBook = function () {
     var modalInstance = $uibModal.open({

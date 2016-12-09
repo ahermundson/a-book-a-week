@@ -1,4 +1,4 @@
-myApp.factory('BookFactory', ["$http", "UserFactory", function($http, UserFactory) {
+myApp.factory('BookFactory', ["$http", "UserFactory", "$q", function($http, UserFactory, $q) {
   console.log("Book Factory Running");
 
 
@@ -9,7 +9,7 @@ myApp.factory('BookFactory', ["$http", "UserFactory", function($http, UserFactor
   //get users book list from book shelf
   function getBooks(currentUser) {
     console.log("in get books in book factory");
-    // console.log("Current User from param: ", currentUser);
+    var deferred = $q.defer();
     return currentUser.user.getToken().then(function(idToken) {
       $http({
         method: 'GET',
@@ -20,7 +20,8 @@ myApp.factory('BookFactory', ["$http", "UserFactory", function($http, UserFactor
         }).then(function(response) {
           collection = response.data.books;
           console.log("Collection from database: ", collection);
-          return collection;
+          deferred.resolve(collection)
+          return deferred.promise;
         },
         function(err) {
           console.log("Error with put request: ", err);
@@ -105,6 +106,22 @@ myApp.factory('BookFactory', ["$http", "UserFactory", function($http, UserFactor
     }
   }
 
+  function getCurrentBook() {
+    var deferred = $q.defer();
+    var currentBook = findCurrentBook(collection);
+    deferred.resolve(currentBook);
+    return deferred.promise;
+  }
+
+  function findCurrentBook(collection) {
+    for (var i = 0; i < collection.length; i++) {
+      if (collection[i].currently_reading === true) {
+        return collection[i];
+      }
+    }
+    return 0;
+  }
+
 
   //Public API that the controllers can access. Each function will return a promise
   var publicApi = {
@@ -126,6 +143,9 @@ myApp.factory('BookFactory', ["$http", "UserFactory", function($http, UserFactor
     sendUserData: function(userData) {
       collection = userData;
       console.log(collection);
+    },
+    getCurrentBook: function() {
+      return getCurrentBook();
     }
   };
 
