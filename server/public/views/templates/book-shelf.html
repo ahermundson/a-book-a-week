@@ -1,6 +1,32 @@
 <h1>Book Shelf</h1>
-<ul ng-repeat="collection in bs.collection">
-  <li>{{collection.title}}</li>
-  <li>{{collection.author}}</li>
-  <li>{{collection.pages}}</li>
-</ul>
+
+<p>You have read {{bs.totalRead}} this year.</p>
+
+<div>
+
+  <script type="text/ng-template" id="group-template.html">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a href tabindex="0" class="accordion-toggle" ng-click="toggleOpen()" uib-accordion-transclude="heading">
+            <span uib-accordion-header ng-class="{'text-muted': isDisabled}">
+              {{heading}}
+            </span>
+          </a>
+        </h4>
+      </div>
+      <div class="panel-collapse collapse" uib-collapse="!isOpen">
+        <div class="panel-body" style="text-align: right" ng-transclude></div>
+      </div>
+    </div>
+  </script>
+
+  <uib-accordion close-others="bs.oneAtATime">
+    <div uib-accordion-group class="panel-default" heading="{{collection.title}}" ng-repeat="collection in bs.collection">
+      <img ng-src="{{collection.book_thumbnail}}" alt="" />
+      <br />
+      {{collection.author}}
+      {{collection.pages}}
+    </div>
+  </uib-accordion>
+</div>
