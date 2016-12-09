@@ -90,6 +90,10 @@ myApp.factory('UserFactory', ["$firebaseAuth", "$http", "$q", function($firebase
     },
     getCurrentUser: function() {
       return getCurrentUser();
+    },
+    getBooks: function() {
+      var collection = self.userData.books;
+      return collection;
     }
   }
   return publicApi;

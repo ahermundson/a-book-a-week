@@ -19,9 +19,16 @@
       <li title="Number Includes Today">Days Left To Finish: {{ns.daysToGoal}}</li>
       <li>Pages to Read Per Day: {{ns.pagesPerDay}}</li>
     </ul>
+
     <div>
       <button type="button" name="update_progress" ng-click="ns.open('lg')">Update Your Progress</button>
       <button type="button" name="finished_book">I've Finished This Book</button>
+    </div>
+  </div>
+  <div>
+    <h3>Progress</h3>
+    <div class="row">
+        <div class="col-md-4"><uib-progressbar ng-max="ns.currentBook.pages" value="ns.currentBook.page_at"><i>{{ns.currentBook.page_at}} / {{ns.currentBook.pages}}</i></uib-progressbar></div>
     </div>
   </div>
 </div>

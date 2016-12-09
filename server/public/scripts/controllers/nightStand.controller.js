@@ -5,12 +5,15 @@ myApp.controller("NightStandController", ["$http", "BookFactory", "UserFactory",
   function getBooks() {
     console.log("running get books in nightstand controller");
 
+
+    //get firebase user from user factory --> have BookFactory get the user's book collection --> go to BookFactory to get the current book.
     UserFactory.getCurrentUser().then(function(user) {
         console.log("User from user.factory: ", user);
         BookFactory.getBooks(user)
         .then(function(response) {
           console.log("Books should be in factory");
-          BookFactory.getCurrentBook().then(function(currentBook) {
+          BookFactory.getCurrentBook()
+          .then(function(currentBook) {
             self.currentBook = currentBook;
             console.log("Current Book From Book Factory: ", self.currentBook);
             self.daysToGoal = getTimeRemaining(moment(self.currentBook.finished_by_goal).format("MM-DD-YYYY"));

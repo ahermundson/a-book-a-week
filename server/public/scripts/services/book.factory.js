@@ -10,7 +10,8 @@ myApp.factory('BookFactory', ["$http", "UserFactory", "$q", function($http, User
   function getBooks(currentUser) {
     console.log("in get books in book factory");
     var deferred = $q.defer();
-    return currentUser.user.getToken().then(function(idToken) {
+    return currentUser.user.getToken()
+    .then(function(idToken) {
       $http({
         method: 'GET',
         url: '/books',

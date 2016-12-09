@@ -2,3 +2,12 @@
   display: flex;
   justify-content: center;
 }
+
+/*.progress {
+  display: flex;
+  justify-content: center;
+}
+
+.progress .row {
+  width: 66%;
+}*/
