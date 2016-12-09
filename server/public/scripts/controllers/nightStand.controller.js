@@ -2,18 +2,19 @@ myApp.controller("NightStandController", ["$http", "BookFactory", '$uibModal', f
 
   var self = this;
 
-
-
   function getBooks() {
     BookFactory.getBooks()
     .then(function(response) {
       self.collection = response;
-      console.log("Collection in BookShelf Controller: ", self.collection);
       self.currentBook = findCurrentBook(self.collection);
       console.log("CurrentBook: ", self.currentBook);
-      BookFactory.currentBook = self.currentBook;
-    });
+      self.daysToGoal = getTimeRemaining(moment(self.currentBook.finished_by_goal).format("MM-DD-YYYY"));
+      console.log(moment(self.currentBook.finished_by_goal).format("MM-DD-YYYY"));
+      console.log("Days to Goal: ", self.daysToGoal);
+      self.pagesLeft = Number(self.currentBook.pages) - Number(self.currentBook.page_at);
+      self.pagesPerDay = pagesToReadPerDay(self.daysToGoal, self.pagesLeft);
 
+    });
   };
   getBooks();
 
@@ -46,5 +47,17 @@ myApp.controller("NightStandController", ["$http", "BookFactory", '$uibModal', f
       getBooks();
     })
   };
+
+
+  function getTimeRemaining(endtime){
+    var t = Date.parse(endtime) - Date.parse(new Date());
+    var days = Math.floor( t/(1000*60*60*24) );
+    return days + 1;
+  }
+
+  function pagesToReadPerDay(days, pages) {
+    console.log("Days: " + days + "Pages: ", pages);
+    return Math.round(pages / days);
+  }
 
 }]);

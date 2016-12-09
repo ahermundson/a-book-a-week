@@ -7,6 +7,7 @@ var bookSchema = new Schema({
   author: String,
   pages: Number,
   book_start_date: Date,
+  finished_by_goal: Date,
   book_finished_date: Date,
   book_thumbnail: String,
   isbn: Number,
