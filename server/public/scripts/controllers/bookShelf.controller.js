@@ -3,6 +3,15 @@ myApp.controller("BookShelfController", ["$http", "BookFactory", "UserFactory", 
   var self = this;
 
   self.collection = [];
+  self.totalRead = self.collection.length;
+
+  self.oneAtATime = true;
+
+  self.status = {
+    isCustomHeaderOpen: false,
+    isFirstOpen: true,
+    isFirstDisabled: false
+  };
 
 
   function getBooks() {
