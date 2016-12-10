@@ -9,6 +9,10 @@
 <div class="nightStand">
   <!-- <time>{{ns.daysToGoal}}</time> -->
   <h3 class="text-center">Currently Reading</h3>
+  <!-- Alerts Container -->
+  <div>
+    <div uib-alert ng-repeat="alert in ns.alerts track by $index" ng-class="'alert-' + (alert.type || 'warning')" close="ns.closeAlert($index)">{{alert.msg}}</div>
+  </div>
 
   <div class="current_book_info">
     <img ng-src="{{ns.currentBook.book_thumbnail}}" alt="" />
@@ -22,7 +26,7 @@
 
     <div>
       <button type="button" name="update_progress" ng-click="ns.open('lg')">Update Your Progress</button>
-      <button type="button" name="finished_book">I've Finished This Book</button>
+      <button type="button" name="finished_book" ng-click="ns.finishedBook()">I've Finished This Book</button>
     </div>
   </div>
   <div>

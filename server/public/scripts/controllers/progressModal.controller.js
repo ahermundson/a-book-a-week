@@ -5,6 +5,8 @@ myApp.controller('ProgressUpdateController', ['$uibModalInstance', 'BookFactory'
     $uibModalInstance.close();
   };
 
+
+  //Close modal, update page number in modal, and update page number in database
   self.updatePage = function() {
     $uibModalInstance.close(self.updatedPageNumber);
     console.log("Book factory current book: ", BookFactory.currentBook);
@@ -18,4 +20,6 @@ myApp.controller('ProgressUpdateController', ['$uibModalInstance', 'BookFactory'
     });
 
   }
+
+
 }]);

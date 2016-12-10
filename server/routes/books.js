@@ -37,6 +37,23 @@ router.put('/update/:book_id', function(req, res) {
   )
 });
 
+//router to update current book to finished
+router.put('/finished/:book_id', function(req, res) {
+  console.log(req.params.book_id);
+  console.log("Got to correct books router: ", req.body);
+  User.findOneAndUpdate({ '_id': "5846d71b5de4b846897b0529", 'books._id': req.params.book_id},
+    { $set: {'books.$.page_at' : req.body.page_at, 'books.$.book_finished_date' : req.body.finished_date, 'books.$.currently_reading' : false }},
+    function(err) {
+      if(err) {
+        console.log('Put ERR: ', err);
+        res.sendStatus(500);
+      } else {
+        res.sendStatus(200);
+      }
+    }
+  )
+});
+
 //Route to add a new book to the users profile
 router.put('/', function(req, res) {
   User.findOneAndUpdate(

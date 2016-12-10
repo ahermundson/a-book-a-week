@@ -80,13 +80,31 @@ myApp.factory('BookFactory', ["$http", "UserFactory", "$q", function($http, User
     });
   };
 
+  //sets currently reading to false, updates page number to the last in the book, adds finished date in database
+  function finishedBook(dataToUpdate, currentUser) {
+    book_id = getBookId(collection);
+    return currentUser.user.getToken()
+      .then(function(idToken) {
+        console.log("Before Put in Book Factory");
+        $http({
+          method: 'PUT',
+          url: '/books/finished/' + book_id,
+          data: dataToUpdate,
+          headers: {
+            id_token: idToken
+          }
+        }).then(function(response) {
+          console.log("Put request successful");
+        },
+        function(err) {
+          console.log("Error with put request: ", err);
+        });
+    });
+  };
 
   //Update users progress on current book
   function updateBookProgress(pageNumber, currentUser) {
     book_id = getBookId(collection);
-    // console.log(book_id);
-    // console.log("Page: ", pageNumber.updatedPageNumber);
-    // var deferred = $q.defer();
     return currentUser.user.getToken()
       .then(function(idToken) {
         console.log("Before Put in Book Factory");
@@ -104,8 +122,6 @@ myApp.factory('BookFactory', ["$http", "UserFactory", "$q", function($http, User
           console.log("Error with put request: ", err);
         });
     });
-    // deferred.resolve("Put finished");
-    // return deferred.promise;
   };
 
   //Get the mongo ID of book currently being read
@@ -116,7 +132,7 @@ myApp.factory('BookFactory', ["$http", "UserFactory", "$q", function($http, User
       }
     }
   }
-
+  //Sends back current book as a promise
   function getCurrentBook() {
     var deferred = $q.defer();
     var currentBook = findCurrentBook(collection);
@@ -124,6 +140,7 @@ myApp.factory('BookFactory', ["$http", "UserFactory", "$q", function($http, User
     return deferred.promise;
   }
 
+  //finds the book the user is currently reading (book with currently_reading set to true)
   function findCurrentBook(collection) {
     for (var i = 0; i < collection.length; i++) {
       if (collection[i].currently_reading === true) {
@@ -132,6 +149,8 @@ myApp.factory('BookFactory', ["$http", "UserFactory", "$q", function($http, User
     }
     return 0;
   }
+
+
 
 
   //Public API that the controllers can access. Each function will return a promise
@@ -151,12 +170,11 @@ myApp.factory('BookFactory', ["$http", "UserFactory", "$q", function($http, User
     updateProgress: function(pageNumber, currentUser) {
       return updateBookProgress(pageNumber, currentUser);
     },
-    sendUserData: function(userData) {
-      collection = userData;
-      console.log(collection);
-    },
     getCurrentBook: function() {
       return getCurrentBook();
+    },
+    finishedBook: function(dataToUpdate, currentUser) {
+      return finishedBook(dataToUpdate, currentUser);
     }
   };
 

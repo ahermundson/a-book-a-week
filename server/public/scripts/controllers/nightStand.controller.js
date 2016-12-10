@@ -51,13 +51,45 @@ myApp.controller("NightStandController", ["$http", "BookFactory", "UserFactory",
     })
   };
 
+  self.finishedBook = function() {
+    self.addAlert();
+    self.currentBook.page_at = self.currentBook.pages;
+    dataToUpdate = {
+      page_at: self.currentBook.pages,
+      finished_date: new Date()
+    }
+    UserFactory.getCurrentUser()
+    .then(function(user) {
+      BookFactory.finishedBook(dataToUpdate, user)
+      .then(function() {
+        getBooks();
+      });
+    });
 
+  }
+
+
+  //ALERTS
+  self.alerts = [
+  ];
+
+  self.addAlert = function() {
+    self.alerts.push({type: 'success', msg: 'Nice Work! Click Add a New Book to move onto your next book!'});
+  };
+
+  self.closeAlert = function(index) {
+    self.alerts.splice(index, 1);
+  };
+
+
+
+  //Calculate days left to finish book
   function getTimeRemaining(endtime){
     var t = Date.parse(endtime) - Date.parse(new Date());
     var days = Math.floor( t/(1000*60*60*24) );
     return days + 1;
   }
-
+  //Calculate pages the user would need to read per day to meet goal
   function pagesToReadPerDay(days, pages) {
     console.log("Days: " + days + "Pages: ", pages);
     return Math.round(pages / days);
