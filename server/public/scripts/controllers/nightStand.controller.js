@@ -2,6 +2,9 @@ myApp.controller("NightStandController", ["$http", "BookFactory", "UserFactory",
 
   var self = this;
 
+  self.showCurrentBookInfo = true;
+
+
   function getBooks() {
     console.log("running get books in nightstand controller");
 
@@ -52,6 +55,7 @@ myApp.controller("NightStandController", ["$http", "BookFactory", "UserFactory",
   };
 
   self.finishedBook = function() {
+    self.showCurrentBookInfo = false;
     self.addAlert();
     self.currentBook.page_at = self.currentBook.pages;
     dataToUpdate = {
