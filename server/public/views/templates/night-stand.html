@@ -14,7 +14,7 @@
     <div uib-alert ng-repeat="alert in ns.alerts track by $index" ng-class="'alert-' + (alert.type || 'warning')" close="ns.closeAlert($index)">{{alert.msg}}</div>
   </div>
 
-  <div class="book_container" ng-show="ns.showCurrentBookInfo">
+  <div class="book_container" ng-show="ns.showCurrentBookInfo" >
     <div class="current_book_info">
       <img ng-src="{{ns.currentBook.book_thumbnail}}" alt="" />
       <ul>
