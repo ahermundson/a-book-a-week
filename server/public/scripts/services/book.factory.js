@@ -60,10 +60,10 @@ myApp.factory('BookFactory', ["$http", "UserFactory", "$q", function($http, User
 
 
   //Add selected book to users database
-  function addSelectedBook(bookToAdd) {
+  function addSelectedBook(bookToAdd, currentUser) {
     console.log("Book selected: ", bookToAdd);
-    var currentUser = UserFactory.getCurrentUser();
-    return currentUser.getToken().then(function(idToken) {
+    // var currentUser = UserFactory.getCurrentUser();
+    return currentUser.user.getToken().then(function(idToken) {
       $http({
         method: 'PUT',
         url: '/books',
@@ -164,8 +164,8 @@ myApp.factory('BookFactory', ["$http", "UserFactory", "$q", function($http, User
     bookData: function() {
       return books;
     },
-    addSelectedBook: function(bookToAdd) {
-      return addSelectedBook(bookToAdd);
+    addSelectedBook: function(bookToAdd, currentUser) {
+      return addSelectedBook(bookToAdd, currentUser);
     },
     updateProgress: function(pageNumber, currentUser) {
       return updateBookProgress(pageNumber, currentUser);

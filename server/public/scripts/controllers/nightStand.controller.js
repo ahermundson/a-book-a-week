@@ -38,6 +38,9 @@ myApp.controller("NightStandController", ["$http", "BookFactory", "UserFactory",
       controller: 'ModalCtrl',
       controllerAs: 'mc'
     });
+    modalInstance.result.then(function() {
+      getBooks();
+    })
   };
 
   self.open = function () {
@@ -52,6 +55,7 @@ myApp.controller("NightStandController", ["$http", "BookFactory", "UserFactory",
       getBooks();
     })
   };
+
 
   self.finishedBook = function() {
     self.showCurrentBookInfo = false;

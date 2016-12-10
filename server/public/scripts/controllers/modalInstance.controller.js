@@ -1,4 +1,4 @@
-myApp.controller('ModalCtrl', ['$uibModalInstance', 'BookFactory', function ($uibModalInstance, BookFactory) {
+myApp.controller('ModalCtrl', ['$uibModalInstance', 'BookFactory', 'UserFactory', function ($uibModalInstance, BookFactory, UserFactory) {
   var self = this;
 
 
@@ -17,7 +17,7 @@ myApp.controller('ModalCtrl', ['$uibModalInstance', 'BookFactory', function ($ui
 
   //Select book from the books returned from a search
   self.selectBook = function(index) {
-    self.close();
+
     self.selectedBook = {
       title: self.books[index].volumeInfo.title,
       author: self.books[index].volumeInfo.authors[0],
@@ -27,9 +27,13 @@ myApp.controller('ModalCtrl', ['$uibModalInstance', 'BookFactory', function ($ui
       book_thumbnail: self.books[index].volumeInfo.imageLinks.thumbnail,
       isbn: self.books[index].volumeInfo.industryIdentifiers[0].identifier
     };
-    BookFactory.addSelectedBook(self.selectedBook)
-    .then(function(response) {
-      self.books = [];
-    })
+    UserFactory.getCurrentUser().then(function(currentUser) {
+      BookFactory.addSelectedBook(self.selectedBook, currentUser)
+      .then(function(response) {
+        self.books = [];
+        self.close();
+      });
+    });
+
   }
 }]);
