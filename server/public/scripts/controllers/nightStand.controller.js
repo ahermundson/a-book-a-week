@@ -13,10 +13,14 @@ myApp.controller("NightStandController", ["$http", "BookFactory", "UserFactory",
         .then(function(response) {
           BookFactory.getCurrentBook()
           .then(function(currentBook) {
-            self.currentBook = currentBook;
-            self.daysToGoal = getTimeRemaining(moment(self.currentBook.finished_by_goal).format("MM-DD-YYYY"));
-            self.pagesLeft = Number(self.currentBook.pages) - Number(self.currentBook.page_at);
-            self.pagesPerDay = pagesToReadPerDay(self.daysToGoal, self.pagesLeft);
+            if (currentBook == undefined) {
+              self.showCurrentBookInfo = false;
+            } else {
+              self.currentBook = currentBook;
+              self.daysToGoal = getTimeRemaining(moment(self.currentBook.finished_by_goal).format("MM-DD-YYYY"));
+              self.pagesLeft = Number(self.currentBook.pages) - Number(self.currentBook.page_at);
+              self.pagesPerDay = pagesToReadPerDay(self.daysToGoal, self.pagesLeft);
+            }
           });
         });
     });
