@@ -13,6 +13,9 @@
   <div>
     <div uib-alert ng-repeat="alert in ns.alerts track by $index" ng-class="'alert-' + (alert.type || 'warning')" close="ns.closeAlert($index)">{{alert.msg}}</div>
   </div>
+  <div class="no_current_book" ng-show="ns.noCurrentBook">
+    <h4>You currently do not have a book on your Night Stand. Click Add a New book to add your next book.</h4>
+  </div>
 
   <div class="book_container" ng-show="ns.showCurrentBookInfo" >
     <div class="current_book_info">

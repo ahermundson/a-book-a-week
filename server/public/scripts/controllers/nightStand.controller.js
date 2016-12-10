@@ -3,7 +3,7 @@ myApp.controller("NightStandController", ["$http", "BookFactory", "UserFactory",
   var self = this;
 
   self.showCurrentBookInfo = true;
-
+  self.noCurrentBook = false;
 
   function getBooks() {
     console.log("running get books in nightstand controller");
@@ -13,8 +13,10 @@ myApp.controller("NightStandController", ["$http", "BookFactory", "UserFactory",
         .then(function(response) {
           BookFactory.getCurrentBook()
           .then(function(currentBook) {
-            if (currentBook == undefined) {
+            console.log("CurrentBook: ", currentBook);
+            if (currentBook === 0) {
               self.showCurrentBookInfo = false;
+              self.noCurrentBook = true;
             } else {
               self.currentBook = currentBook;
               self.daysToGoal = getTimeRemaining(moment(self.currentBook.finished_by_goal).format("MM-DD-YYYY"));
