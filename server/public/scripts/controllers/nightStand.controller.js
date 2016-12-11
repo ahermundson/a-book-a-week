@@ -9,6 +9,8 @@ myApp.controller("NightStandController", ["$http", "BookFactory", "UserFactory",
     console.log("running get books in nightstand controller");
     //get firebase user from user factory --> have BookFactory get the user's book collection --> go to BookFactory to get the current book.
     UserFactory.getCurrentUser().then(function(user) {
+        self.showCurrentBookInfo = true;
+        self.noCurrentBook = false;
         BookFactory.getBooks(user)
         .then(function(response) {
           BookFactory.getCurrentBook()
@@ -38,7 +40,8 @@ myApp.controller("NightStandController", ["$http", "BookFactory", "UserFactory",
       controller: 'ModalCtrl',
       controllerAs: 'mc'
     });
-    modalInstance.result.then(function() {
+    modalInstance.result.then(function(response) {
+      console.log("modal result: ", response);
       getBooks();
     })
   };

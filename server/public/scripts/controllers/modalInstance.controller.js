@@ -31,6 +31,7 @@ myApp.controller('ModalCtrl', ['$uibModalInstance', 'BookFactory', 'UserFactory'
       BookFactory.addSelectedBook(self.selectedBook, currentUser)
       .then(function(response) {
         self.books = [];
+        console.log("About to close modal");
         self.close();
       });
     });
