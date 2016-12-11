@@ -13,16 +13,16 @@ myApp.controller("BookShelfController", ["$http", "BookFactory", "UserFactory", 
     isFirstDisabled: false
   };
 
-
+  //Currently getting books from user factory. Needs to be updated to go through book factory otherwise will only be accurate if until user finishes/adds a book
   function getBooks() {
-    self.collection = UserFactory.getBooks();
-    console.log(self.collection);
-  //   UserFactory.getBooks()
-  //   .then(function(response) {
-  //     console.log("Response from promise:", response);
-  //     self.collection = response;
-  //     console.log("Collection in BookShelf Controller: ", self.collection);
-  //   });
+    UserFactory.getCurrentUser()
+    .then(function(currentUser) {
+      BookFactory.getBooks(currentUser)
+      .then(function(collection) {
+        self.collection = collection;
+        console.log("Collection Returned From Book Factory: ", self.collection);
+      });
+    });
   };
   getBooks();
 }]);
