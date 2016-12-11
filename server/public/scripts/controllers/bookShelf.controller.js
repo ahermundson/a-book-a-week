@@ -3,7 +3,7 @@ myApp.controller("BookShelfController", ["$http", "BookFactory", "UserFactory", 
   var self = this;
 
   self.collection = [];
-  self.totalRead = self.collection.length;
+
 
   self.oneAtATime = true;
 
@@ -21,6 +21,8 @@ myApp.controller("BookShelfController", ["$http", "BookFactory", "UserFactory", 
       .then(function(collection) {
         self.collection = collection;
         console.log("Collection Returned From Book Factory: ", self.collection);
+        self.totalRead = self.collection.length;
+        console.log("Total Read: ", self.totalRead);
       });
     });
   };
