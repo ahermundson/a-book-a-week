@@ -4,8 +4,10 @@ var nodemailer = require('nodemailer');
 var User = require('../models/user');
 
 var transporter = nodemailer.createTransport();
-var emails = [];
-
+var schedule = require('node-schedule');
+var rule = new schedule.RecurrenceRule();
+rule.hour = 15;
+rule.minute = 28;
 
 
 router.get('/', function(req, res) {
@@ -22,12 +24,15 @@ router.get('/', function(req, res) {
             subject: 'hello',
             html: '<b>Hi there, ' + collection[i].first_name + '</b>.'
           }
-          transporter.sendMail(mailOptions, function(error, info) {
+          var j = schedule.scheduleJob(rule, function() {
+
+            transporter.sendMail(mailOptions, function(error, info) {
             if(error) {
               console.log("Error: ", error);
             } else {
               console.log("Message Sent: ", info.response);
             }
+            });
           });
         }
       }
