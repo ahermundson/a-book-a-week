@@ -15,6 +15,15 @@ myApp.controller('ModalCtrl', ['$uibModalInstance', 'BookFactory', 'UserFactory'
     });
   };
 
+  self.recommend = function() {
+    UserFactory.getCurrentUser()
+    then(function(currentUser) {
+      BookFactory.getRandomAuthor(currentUser){
+        console.log("With Get Random Author");
+      }
+    }
+  }
+
   //Select book from the books returned from a search
   self.selectBook = function(index) {
 

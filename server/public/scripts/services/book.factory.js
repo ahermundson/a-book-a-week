@@ -150,7 +150,30 @@ myApp.factory('BookFactory', ["$http", "UserFactory", "$q", function($http, User
     return 0;
   }
 
+  function getRandomAuthor(currentUser) {
+    var deferred = $q.defer();
+    currentUser.user.getToken()
+    .then(function(idToken) {
+      $http({
+        method: 'GET',
+        url: '/books',
+        headers: {
+          id_token: idToken
+        }
+        }).then(function(response) {
+          collection = response.data.books;
+          console.log("Collection from database: ", collection);
 
+          //storing collection to send back to controller
+          deferred.resolve(collection[randomNumber(0, collection.length)]);
+        },
+        function(err) {
+          console.log("Error with put request: ", err);
+        });
+    });
+    //returning book collection to nightstand controller
+    return deferred.promise;
+  }
 
 
   //Public API that the controllers can access. Each function will return a promise
@@ -175,9 +198,17 @@ myApp.factory('BookFactory', ["$http", "UserFactory", "$q", function($http, User
     },
     finishedBook: function(dataToUpdate, currentUser) {
       return finishedBook(dataToUpdate, currentUser);
+    },
+    getRandomAuthor(currentUser) {
+      return getRandomAuthor(currentUser);
     }
   };
 
   return publicApi;
 
 }])
+
+
+function randomNumber(min, max){
+    return Math.floor(Math.random() * (1 + max - min) + min);
+}
