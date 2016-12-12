@@ -1,6 +1,7 @@
 var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
+var nodemailer = require('nodemailer');
 var app = express();
 var dotenv = require('dotenv').config();
 var portDecision = process.env.PORT || 3000;
@@ -17,6 +18,7 @@ app.use(bodyParser.json());
 //Connect to database
 mongoConnection.connect();
 
+app.use('/email', email);
 
 //Static Files
 app.get('/', function(req, res){

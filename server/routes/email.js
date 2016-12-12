@@ -1,19 +1,23 @@
-var helper = require('sendgrid').mail;
-var from_email = new helper.Email('alex.hermundson@gmail.com');
-var to_email = new helper.Email('alex.hermundson@gmail.com');
-var subject = 'Hello World from the SendGrid Node.js Library!';
-var content = new helper.Content('text/plain', 'Hello, Email!');
-var mail = new helper.Mail(from_email, subject, to_email, content);
+var express = require('express');
+var router = express.Router();
+var nodemailer = require('nodemailer');
 
-var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
-var request = sg.emptyRequest({
-  method: 'POST',
-  path: '/v3/mail/send',
-  body: mail.toJSON(),
-});
+var transporter = nodemailer.createTransport();
 
-sg.API(request, function(error, response) {
-  console.log(response.statusCode);
-  console.log(response.body);
-  console.log(response.headers);
-});
+var mailOptions = {
+  from: 'alex.hermundson@gmail.com',
+  to: 'alex.hermundson@gmail.com',
+  subject: 'hello',
+  html: '<b>hello world!</b>',
+  text: 'hello world!'
+}
+
+// transporter.sendMail(mailOptions, function(error, info) {
+//   if(error) {
+//     console.log("Error: ", error);
+//   } else {
+//     console.log("Message Sent: ", info.response);
+//   }
+// });
+
+module.exports = router;
