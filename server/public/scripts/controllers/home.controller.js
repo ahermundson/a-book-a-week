@@ -4,7 +4,7 @@ myApp.controller("HomeController", ["UserFactory", "$http",  function(UserFactor
 
   self.email = function() {
     $http({
-      method: 'POST',
+      method: 'GET',
       url: '/email'
     });
   }
