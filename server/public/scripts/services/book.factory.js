@@ -8,7 +8,7 @@ myApp.factory('BookFactory', ["$http", "UserFactory", "$q", function($http, User
   var book_id;
   //get users book list from database
   function getBooks(currentUser) {
-    console.log("in get books in book factory");
+    console.log("in get books in book factory: ", currentUser);
     var deferred = $q.defer();
     currentUser.user.getToken()
     .then(function(idToken) {

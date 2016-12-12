@@ -3,12 +3,13 @@
   justify-content: center;
 }
 
-.fade.ng-enter {
-  transition:0.5s linear all;
-  opacity:0;
+.header_nav {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 100px;
 }
 
-/* The finishing CSS styles for the enter animation */
-.fade.ng-enter.ng-enter-active {
-  opacity:1;
+.nav_header {
+  align-self: flex-start;
+  margin-left: 100px;
 }

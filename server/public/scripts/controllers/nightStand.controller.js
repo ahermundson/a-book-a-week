@@ -35,15 +35,19 @@ myApp.controller("NightStandController", ["$http", "BookFactory", "UserFactory",
 
 
   self.openAddBook = function () {
-    var modalInstance = $uibModal.open({
-      templateUrl: './views/templates/add-book-modal.html',
-      controller: 'ModalCtrl',
-      controllerAs: 'mc'
-    });
-    modalInstance.result.then(function(response) {
-      console.log("modal result: ", response);
-      getBooks();
-    })
+    if (self.noCurrentBook === false) {
+      alert("You already have a book on your nightstand.");
+    } else {
+      var modalInstance = $uibModal.open({
+        templateUrl: './views/templates/add-book-modal.html',
+        controller: 'ModalCtrl',
+        controllerAs: 'mc'
+      });
+      modalInstance.result.then(function(response) {
+        console.log("modal result: ", response);
+        getBooks();
+      });
+    }
   };
 
   self.open = function () {

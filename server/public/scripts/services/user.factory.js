@@ -68,7 +68,8 @@ myApp.factory('UserFactory', ["$firebaseAuth", "$http", "$q", function($firebase
 
   function getCurrentUser() {
     var deferred = $q.defer();
-    if (currentUser !== undefined) {
+    console.log("Current User in user factory else: ", currentUser);
+    if (currentUser.user !== undefined) {
       deferred.resolve(currentUser);
       return deferred.promise;
     } else {
