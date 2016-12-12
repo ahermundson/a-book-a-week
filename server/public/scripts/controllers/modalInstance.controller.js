@@ -16,6 +16,8 @@ myApp.controller('ModalCtrl', ['$uibModalInstance', 'BookFactory', 'UserFactory'
     });
   };
 
+
+  //get random author from database, do a search for that author then display books from that author
   self.recommend = function() {
     UserFactory.getCurrentUser()
     .then(function(currentUser) {

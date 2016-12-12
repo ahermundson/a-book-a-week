@@ -13,7 +13,7 @@ myApp.controller("BookShelfController", ["$http", "BookFactory", "UserFactory", 
     isFirstDisabled: false
   };
 
-  //Currently getting books from user factory. Needs to be updated to go through book factory otherwise will only be accurate if until user finishes/adds a book
+  //Get users books from database
   function getBooks() {
     UserFactory.getCurrentUser()
     .then(function(currentUser) {

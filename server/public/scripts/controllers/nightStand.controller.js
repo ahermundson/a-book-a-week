@@ -5,6 +5,8 @@ myApp.controller("NightStandController", ["$http", "BookFactory", "UserFactory",
   self.showCurrentBookInfo = true;
   self.noCurrentBook = false;
 
+
+  //This function will get the book the user is currently reading
   function getBooks() {
     console.log("running get books in nightstand controller");
     //get firebase user from user factory --> have BookFactory get the user's book collection --> go to BookFactory to get the current book.
@@ -34,6 +36,7 @@ myApp.controller("NightStandController", ["$http", "BookFactory", "UserFactory",
 
 
 
+  //opens add book modal
   self.openAddBook = function () {
     if (self.noCurrentBook === false) {
       alert("You already have a book on your nightstand.");
@@ -50,6 +53,8 @@ myApp.controller("NightStandController", ["$http", "BookFactory", "UserFactory",
     }
   };
 
+
+  //opens update progress modal
   self.open = function () {
     var modalInstance = $uibModal.open({
       templateUrl: './views/templates/update-progress-modal.html',
@@ -63,7 +68,7 @@ myApp.controller("NightStandController", ["$http", "BookFactory", "UserFactory",
     })
   };
 
-
+  //Update database with new finished book info.
   self.finishedBook = function() {
     self.showCurrentBookInfo = false;
     self.addAlert();
