@@ -2,11 +2,13 @@ var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
 var app = express();
+var dotenv = require('dotenv').config();
 var portDecision = process.env.PORT || 3000;
 var decoder = require('./modules/decoder');
 var mongoConnection = require('./modules/mongo-connection');
 var users = require('./routes/users');
 var books = require('./routes/books');
+var email = require('./routes/email');
 
 
 app.use(express.static('server/public'));

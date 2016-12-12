@@ -22,7 +22,7 @@ myApp.factory('BookFactory', ["$http", "UserFactory", "$q", function($http, User
           collection = response.data.books;
           console.log("Collection from database: ", collection);
           //storing collection to send back to controller
-          deferred.resolve(collection)
+          deferred.resolve(collection);
         },
         function(err) {
           console.log("Error with put request: ", err);
