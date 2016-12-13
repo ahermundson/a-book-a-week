@@ -1,3 +1,4 @@
+
 <div class="modal-header">
   <h3 class="modal-title" id="modal-title">Search for your book!</h3>
 </div>
@@ -14,27 +15,25 @@
       <button class="btn btn-warning" type="button" ng-click="mc.close()">Cancel</button>
     </div>
 
-    <div><button ng-click="mc.recommend()">Need a recommendation?</button>
-    </div>
-
   </form>
 </div>
 
-<div class="bookSelectionOptions" ng-show="mc.books">
-  <p ng-show="mc.showRecommendAuthor">Because you have read books by {{mc.becauseYouRead}}</p>
-  <h4>Select Your Book</h4>
-  <ul ng-repeat="books in mc.books track by $index">
-    <li>{{books.volumeInfo.title}}</li>
-    <ul>
-      <li>Authors</li>
-      <ul ng-repeat="authors in books.volumeInfo.authors track by $index">
-        <li>{{authors}}</li>
+
+<div class="select-book-modal">
+  <div class="bookSelectionOptions" ng-show="mc.books">
+    <p ng-show="mc.showRecommendAuthor">Because you have read books by {{mc.becauseYouRead}}</p>
+    <h4>Select Your Book</h4>
+    <ul ng-repeat="books in mc.books track by $index">
+      <li>{{books.volumeInfo.title}}</li>
+      <ul>
+        <li>Authors</li>
+        <ul ng-repeat="authors in books.volumeInfo.authors track by $index">
+          <li>{{authors}}</li>
+        </ul>
+
+        <li>Pages: {{books.volumeInfo.pageCount}}</li>
       </ul>
-
-      <li>Pages: {{books.volumeInfo.pageCount}}</li>
+      <button ng-click="mc.selectBook($index)">Select This Book</button>
     </ul>
-    <button ng-click="mc.selectBook($index)">Select This Book</button>
-  </ul>
-
-
+  </div>
 </div>
