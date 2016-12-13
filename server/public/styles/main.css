@@ -18,12 +18,10 @@ body {
 
 
 .current_book_info {
-  background-color: rgb(56,63,81);
   display: flex;
   justify-content: space-around;
   align-items: center;
   padding: 20px;
-  color: white;
 }
 
 .current_book_info ul {
@@ -111,8 +109,8 @@ main {
 
 .night-stand {
   width: 100%;
-  background-color: rgba(221,219,241,0.7);
-  color: rgb(56,63,81);
+  background-color: rgba(56,63,81,0.9);
+  color: white;
 }
 
 .night-stand-header {
