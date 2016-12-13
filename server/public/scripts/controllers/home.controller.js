@@ -6,9 +6,11 @@ myApp.controller("HomeController", ["UserFactory", "$http",  function(UserFactor
 
   //user login, handled through the user factory.
   self.logIn = function() {
-    UserFactory.logIn().then(function(){
+    UserFactory.logIn().then(function(user){
       self.loggedIn = true;
-      console.log("In LogIn.then");
+      console.log("In LogIn.then: ", user);
+      self.user = user.name;
+      self.addAlert();
     });
   }
   //user logout. Handled through the factory.
@@ -16,4 +18,17 @@ myApp.controller("HomeController", ["UserFactory", "$http",  function(UserFactor
     UserFactory.logOut();
     self.loggedIn = false;
   }
+
+  //ALERTS
+  self.alerts = [
+  ];
+
+  self.addAlert = function() {
+    self.alerts.push({type: 'success', msg: 'Welcome Back! Head to the Night Stand to update your progress.'});
+  };
+
+  self.closeAlert = function(index) {
+    self.alerts.splice(index, 1);
+  };
+
 }]);

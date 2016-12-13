@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var sendgrid = require('sendgrid')(process.env.SENDGRID_USER, process.env.SENDGRID_API_KEY);
 // bring in our mongoose model
 var User = require('../models/user');
 
