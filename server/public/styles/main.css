@@ -97,6 +97,8 @@ main {
   text-align: center;
 }
 
-.select-book-modal {
-  text-align: center;
+.books-to-repeat {
+  display: flex;
+  align-items: center;
+  margin: 25px;
 }

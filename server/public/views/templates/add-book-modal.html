@@ -19,21 +19,18 @@
 </div>
 
 
-<div class="select-book-modal">
-  <div class="bookSelectionOptions" ng-show="mc.books">
-    <p ng-show="mc.showRecommendAuthor">Because you have read books by {{mc.becauseYouRead}}</p>
-    <h4>Select Your Book</h4>
-    <ul ng-repeat="books in mc.books track by $index">
-      <li>{{books.volumeInfo.title}}</li>
-      <ul>
-        <li>Authors</li>
-        <ul ng-repeat="authors in books.volumeInfo.authors track by $index">
-          <li>{{authors}}</li>
-        </ul>
 
-        <li>Pages: {{books.volumeInfo.pageCount}}</li>
-      </ul>
+<div class="bookSelectionOptions" ng-show="mc.books">
+  <p ng-show="mc.showRecommendAuthor">Because you have read books by {{mc.becauseYouRead}}</p>
+  <h4>Select Your Book</h4>
+  <div class="books-to-repeat" ng-repeat="books in mc.books track by $index">
+    <img ng-src="{{books.volumeInfo.imageLinks.thumbnail}}" />
+    <ul class="book-selection-list" >
+      <li>Title: {{books.volumeInfo.title}}</li>
+      <li>Authors: <span ng-repeat="authors in books.volumeInfo.authors track by $index">{{authors}} </span></li>
+      <li>Pages: {{books.volumeInfo.pageCount}}</li>
       <button ng-click="mc.selectBook($index)">Select This Book</button>
     </ul>
   </div>
+
 </div>
