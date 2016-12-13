@@ -6,7 +6,6 @@ myApp.factory('UserFactory', ["$firebaseAuth", "$http", "$q", function($firebase
 
   // This code runs whenever the user logs in
   function logIn(){
-    self.loggedIn = true;
     return auth.$signInWithPopup("google").then(function(firebaseUser) {
       console.log("Firebase Authenticated as: ", firebaseUser.user.displayName);
       currentUser = firebaseUser;

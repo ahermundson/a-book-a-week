@@ -14,10 +14,14 @@
       <button class="btn btn-warning" type="button" ng-click="mc.close()">Cancel</button>
     </div>
 
+    <div><button ng-click="mc.recommend()">Need a recommendation?</button>
+    </div>
+
   </form>
 </div>
 
 <div class="bookSelectionOptions" ng-show="mc.books">
+  <p ng-show="mc.showRecommendAuthor">Because you have read books by {{mc.becauseYouRead}}</p>
   <h4>Select Your Book</h4>
   <ul ng-repeat="books in mc.books track by $index">
     <li>{{books.volumeInfo.title}}</li>
