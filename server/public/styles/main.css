@@ -11,6 +11,10 @@ body {
   background-size: cover;
 }
 
+.header {
+  box-shadow: 0px 5px 5px black;
+}
+
 .current_book_info {
   background-color: rgb(56,63,81);
   display: flex;

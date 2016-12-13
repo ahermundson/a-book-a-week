@@ -34,7 +34,10 @@ myApp.controller("NightStandController", ["$http", "BookFactory", "UserFactory",
   };
   getBooks();
 
-
+  //opens modal with recommended books for user based on an author they have read
+  self.openRecommendBook = function() {
+    
+  }
 
   //opens add book modal
   self.openAddBook = function () {
