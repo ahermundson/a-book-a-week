@@ -120,7 +120,12 @@ main {
 }
 
 .book-selection-list {
+
+}
+
+.recommend-book-selection-list {
   list-style: none;
+  width: 50%;
 }
 
 .add-book-button {
@@ -180,7 +185,7 @@ main {
 }
 
 .recommend-book-selection-options h3 {
-  margin-top: 25px;
+  padding-top: 25px;
   text-align: center;
 }
 
@@ -191,7 +196,6 @@ main {
   flex-direction: column;
   justify-content: space-between;
   list-style: none;
-  margin: auto
 }
 
 .recommend-book-button-list li {

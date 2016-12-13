@@ -2,7 +2,7 @@
   <h3>Because you have read books by {{rb.becauseYouRead}}</h3>
   <div class="books-to-repeat" ng-repeat="books in rb.books track by $index">
     <img ng-src="{{books.volumeInfo.imageLinks.thumbnail}}" />
-    <ul class="book-selection-list" >
+    <ul class="recommend-book-selection-list" >
       <li>Title: {{books.volumeInfo.title}}</li>
       <li>Authors: <span ng-repeat="authors in books.volumeInfo.authors track by $index">{{authors}} </span></li>
       <li>Pages: {{books.volumeInfo.pageCount}}</li>
