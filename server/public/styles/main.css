@@ -30,8 +30,8 @@ h1 {
 
 .header_nav {
   height: 100px;
-  background-color: rgb(56,63,81);
-  color: rgb(221,219,241);
+  background-color: rgb(161,166,180);
+  color: rgb(200,70,48);
   display: flex;
 }
 
@@ -69,7 +69,7 @@ h1 {
 }
 
 .nav_list li a {
-  color: rgb(221,219,241);
+  color: rgb(200,70,48);
 }
 
 main {
