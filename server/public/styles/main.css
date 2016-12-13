@@ -163,8 +163,9 @@ main {
 }
 
 .progress-bar-style {
-  background-color: rgb(51,32,42);
-  color: white;
+  background-color: rgb(221,219,241);
+  color: rgb(56,63,81);
+  font-weight: bold;
 }
 
 .night-stand-buttons ul {
@@ -237,4 +238,23 @@ main {
 .panel-default>.panel-heading {
   background-color: rgb(51,32,42);
   color: white;
+}
+
+.modal-header {
+  border-bottom: none;
+}
+.modal-footer {
+  border-top: none;
+}
+
+.update-progress-modal {
+  background-color: rgb(60,122,137);
+  color: white;
+}
+
+.progress-button {
+  background-color: rgb(246,130,140);
+  border: 2px solid white;
+  color: white;
+  border-radius: 0;
 }
