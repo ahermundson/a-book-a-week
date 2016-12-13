@@ -1,42 +1,46 @@
-<h1>Night Stand</h1>
+<div class="night-stand">
+  <div class="night-stand-header">
+    <h1>Night Stand</h1>
 
-<div>
-
-    <button type="button" class="btn btn-default" ng-click="ns.openAddBook('lg')">Add A New Book</button>
-
-</div>
-
-<div class="nightStand">
-  <!-- <time>{{ns.daysToGoal}}</time> -->
-  <h3 class="text-center">Currently Reading</h3>
-  <!-- Alerts Container -->
-  <div>
-    <div uib-alert ng-repeat="alert in ns.alerts track by $index" ng-class="'alert-' + (alert.type || 'warning')" close="ns.closeAlert($index)">{{alert.msg}}</div>
-  </div>
-  <div class="no_current_book" ng-show="ns.noCurrentBook">
-    <h4>You currently do not have a book on your Night Stand. Click Add a New book to add your next book.</h4>
-  </div>
-
-  <div class="book_container" ng-show="ns.showCurrentBookInfo" >
-    <div class="current_book_info">
-      <img ng-src="{{ns.currentBook.book_thumbnail}}" alt="" />
-      <ul>
-        <li>Title: {{ns.currentBook.title}}</li>
-        <li>Author: {{ns.currentBook.author}}</li>
-        <li>Progress: On page {{ns.currentBook.page_at}} of {{ns.currentBook.pages}}</li>
-        <li title="Number Includes Today">Days Left To Finish: {{ns.daysToGoal}}</li>
-        <li>Pages to Read Per Day: {{ns.pagesPerDay}}</li>
-      </ul>
-
-      <div>
-        <button type="button" name="update_progress" ng-click="ns.open('lg')">Update Your Progress</button>
-        <button type="button" name="finished_book" ng-click="ns.finishedBook()">I've Finished This Book</button>
-      </div>
-    </div>
     <div>
-      <h3>Progress</h3>
-      <div class="row">
-          <div class="col-md-4"><uib-progressbar ng-max="ns.currentBook.pages" value="ns.currentBook.page_at"><i>{{ns.currentBook.page_at}} / {{ns.currentBook.pages}}</i></uib-progressbar></div>
+
+        <button type="button" class="btn btn-default" ng-click="ns.openAddBook('lg')">Add A New Book</button>
+
+    </div>
+  </div>
+
+
+  <div class="night-stand-book-info">
+    <h3 class="text-center">Currently Reading</h3>
+    <!-- Alerts Container -->
+    <div>
+      <div uib-alert ng-repeat="alert in ns.alerts track by $index" ng-class="'alert-' + (alert.type || 'warning')" close="ns.closeAlert($index)">{{alert.msg}}</div>
+    </div>
+    <div class="no_current_book" ng-show="ns.noCurrentBook">
+      <h4>You currently do not have a book on your Night Stand. Click Add a New book to add your next book.</h4>
+    </div>
+
+    <div class="book_container" ng-show="ns.showCurrentBookInfo" >
+      <div class="current_book_info">
+        <img ng-src="{{ns.currentBook.book_thumbnail}}" alt="" />
+        <ul>
+          <li>Title: {{ns.currentBook.title}}</li>
+          <li>Author: {{ns.currentBook.author}}</li>
+          <li>Progress: On page {{ns.currentBook.page_at}} of {{ns.currentBook.pages}}</li>
+          <li title="Number Includes Today">Days Left To Finish: {{ns.daysToGoal}}</li>
+          <li>Pages to Read Per Day: {{ns.pagesPerDay}}</li>
+        </ul>
+
+        <div>
+          <button type="button" name="update_progress" ng-click="ns.open('lg')">Update Your Progress</button>
+          <button type="button" name="finished_book" ng-click="ns.finishedBook()">I've Finished This Book</button>
+        </div>
+      </div>
+      <div>
+        <h3>Progress</h3>
+        <div class="row">
+            <div class="col-md-4"><uib-progressbar ng-max="ns.currentBook.pages" value="ns.currentBook.page_at"><i>{{ns.currentBook.page_at}} / {{ns.currentBook.pages}}</i></uib-progressbar></div>
+        </div>
       </div>
     </div>
   </div>

@@ -6,9 +6,8 @@ var User = require('../models/user');
 
 //Route to get all books ot display on book shelf. Should return users book array. Send this to factory so you can pick it off for the night stand
 router.get('/', function(req, res) {
-  console.log("Got to get in book route");
   User.findOne(
-    { email: 'alex.hermundson@gmail.com' },
+    { email: req.decodedToken.email },
     { books: true},
     function(err, collection) {
       if(err) {
@@ -24,7 +23,7 @@ router.get('/', function(req, res) {
 router.put('/update/:book_id', function(req, res) {
   console.log(req.params.book_id);
   console.log("Got to correct books router: ", req.body);
-  User.findOneAndUpdate({ '_id': "5846d71b5de4b846897b0529", 'books._id': req.params.book_id},
+  User.findOneAndUpdate({ email: req.decodedToken.email, 'books._id': req.params.book_id},
     { $set: {'books.$.page_at' : req.body.updatedPageNumber }},
     function(err) {
       if(err) {
@@ -41,7 +40,7 @@ router.put('/update/:book_id', function(req, res) {
 router.put('/finished/:book_id', function(req, res) {
   console.log(req.params.book_id);
   console.log("Got to correct books router: ", req.body);
-  User.findOneAndUpdate({ '_id': "5846d71b5de4b846897b0529", 'books._id': req.params.book_id},
+  User.findOneAndUpdate({ email: req.decodedToken.email, 'books._id': req.params.book_id},
     { $set: {'books.$.page_at' : req.body.page_at, 'books.$.book_finished_date' : req.body.finished_date, 'books.$.currently_reading' : false }},
     function(err) {
       if(err) {

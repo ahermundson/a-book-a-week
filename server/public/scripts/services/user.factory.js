@@ -6,8 +6,7 @@ myApp.factory('UserFactory', ["$firebaseAuth", "$http", "$q", function($firebase
 
   // This code runs whenever the user logs in
   function logIn(){
-    self.loggedIn = true;
-    return auth.$signInWithPopup("google").then(function(firebaseUser) {
+    var deferred = $q.defer(); auth.$signInWithPopup("google").then(function(firebaseUser) {
       console.log("Firebase Authenticated as: ", firebaseUser.user.displayName);
       currentUser = firebaseUser;
       firebaseUser.user.getToken().then(function(idToken){
@@ -20,11 +19,13 @@ myApp.factory('UserFactory', ["$firebaseAuth", "$http", "$q", function($firebase
         }).then(function(response){
           console.log("got response from login: ", response.data);
           self.userData = response.data;
+          deferred.resolve(self.userData);
         });
       });
     }).catch(function(error) {
       console.log("Authentication failed: ", error);
     });
+    return deferred.promise;
   };
 
   // This code runs whenever the user changes authentication states

@@ -1,17 +1,100 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: url(../assets/library.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 .current_book_info {
   display: flex;
   justify-content: center;
 }
 
-.header_nav {
-  display: flex;
-  justify-content: flex-end;
-  margin-right: 100px;
+h1 {
+  margin: 0;
 }
 
-.nav_header {
+.header_nav {
+  height: 100px;
+  background-color: rgb(56,63,81);
+  color: rgb(221,219,241);
+  display: flex;
+}
+
+.title {
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.navigation {
+  height: 100%;
+  width: 100%;
+  -webkit-align-self: flex-start;
   align-self: flex-start;
-  margin-left: 100px;
+}
+
+.nav_list {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  list-style: none;
+  align-items: center;
+}
+
+.nav_head {
+  margin-right: auto;
+}
+
+.nav_list li {
+  font-size: 18px;
+  padding: 15px 15px;
+}
+
+.nav_list li a {
+  color: rgb(221,219,241);
+}
+
+main {
+  margin: 50px auto;
+  width: 65%;
+  color: white;
+}
+
+.home_body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(221,219,241,0.7);
+}
+
+.home_body button {
+  margin: 10px;
+  background-color: rgba(221,219,241,0.7);
+  border: 1px solid rgb(56,63,81);
+  color: rgb(56,63,81);
+  width: 100px;
+}
+
+
+.night-stand {
+  width: 100%;
+  background-color: rgba(221,219,241,0.7);
+  color: rgb(56,63,81);
+}
+
+.night-stand-header {
+  margin: 0 auto;
+  text-align: center;
 }
 
 .select-book-modal {
