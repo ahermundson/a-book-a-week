@@ -12,10 +12,12 @@ body {
 }
 
 .current_book_info {
+  background-color: rgb(56,63,81);
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   padding: 20px;
+  color: white;
 }
 
 .current_book_info ul {
@@ -140,4 +142,29 @@ main {
   width: 80%;
   text-align: center;
   margin: 0 auto;
+}
+
+.progress-bar-style {
+  background-color: rgb(51,32,42);
+  color: white;
+}
+
+.night-stand-buttons ul {
+  list-style: none;
+}
+
+.night-stand-buttons button {
+  text-align: center;
+  width: 175px;
+  margin: 10px;
+  background-color: rgb(221,219,241);
+  border: 2px solid white;
+  color: rgb(56,63,81);
+  padding: 10px;
+  border-radius: 0;
+}
+
+.night-stand-buttons button:hover {
+  background-color: rgb(56,63,81);
+  color: rgb(221,219,241);
 }
