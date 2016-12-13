@@ -15,6 +15,8 @@ body {
   box-shadow: 0px 5px 5px black;
 }
 
+
+
 .current_book_info {
   background-color: rgb(56,63,81);
   display: flex;
@@ -86,7 +88,12 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgba(221,219,241,0.7);
+  background-color: rgba(221,219,241,0.9);
+  color: rgb(56,63,81);
+}
+
+.home_body p {
+  margin: 10px 25px 10px 25px;
 }
 
 .home_body button {
@@ -97,6 +104,10 @@ main {
   width: 100px;
 }
 
+.alert {
+  background-color: rgb(56,63,81);
+  color: rgb(221,219,241);
+}
 
 .night-stand {
   width: 100%;
@@ -208,4 +219,24 @@ main {
   background-color: rgb(221,219,241);
   border: 2px solid white;
   color: rgb(56,63,81);
+}
+
+.books-accordion {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.panel-default {
+  background-color: rgba(56,63,81,0.9);
+  color: rgb(221,219,241);
+}
+
+.book-details ul {
+  list-style: none;
+}
+
+.panel-default>.panel-heading {
+  background-color: rgb(51,32,42);
+  color: white;
 }

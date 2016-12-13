@@ -1,4 +1,4 @@
-myApp.controller('RecommendBookController', ['BookFactory', 'UserFactory', function (BookFactory, UserFactory) {
+myApp.controller('RecommendBookController', ['BookFactory', 'UserFactory', '$uibModal', function (BookFactory, UserFactory, $uibModal) {
   console.log("In Recommend Book Controller");
 
 
@@ -33,7 +33,6 @@ myApp.controller('RecommendBookController', ['BookFactory', 'UserFactory', funct
 
   //Select book from the books returned from a search
   self.selectBook = function(index) {
-    self.showRecommendAuthor = false;
     self.selectedBook = {
       title: self.books[index].volumeInfo.title,
       author: self.books[index].volumeInfo.authors[0],
@@ -50,6 +49,20 @@ myApp.controller('RecommendBookController', ['BookFactory', 'UserFactory', funct
       });
     });
 
+  }
+
+  self.previewBook = function(index) {
+    self.isbn = self.books[index].volumeInfo.industryIdentifiers[0].identifier;
+    console.log("ISBN: ", self.isbn);
+    var modalInstance = $uibModal.open({
+      templateUrl: './views/templates/preview-book-modal.html',
+      controller: 'PreviewModalController',
+      controllerAs: 'pm'
+    });
+    modalInstance.result.then(function(response) {
+      console.log("modal result: ", response);
+      getBooks();
+    });
   }
 
   self.recommend();

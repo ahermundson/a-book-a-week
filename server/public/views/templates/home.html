@@ -1,11 +1,12 @@
 <div class="home_body">
-  <h1>Home</h1>
+  <h1>Welcome to A Book A Week</h1>
+  <p>The challenge is to read a book a week for a year. I know that may seem like overboard but if you slot 40-minutes a day to reading this goal can be achieved. A Book A Week strives to help you on you stay on track to meet that goal.</p>
+  <p>The Book Shelf provides you with a visual of the journey you have been on while the Night Stand will allow you to see where you are at on your goal for the week.</p>
+  <p>Log In to update your progress or to add a new book.</p>
   <div>
-    <div uib-alert ng-repeat="alert in hm.alerts track by $index" ng-class="'alert-' + (alert.type || 'warning')" close="hm.closeAlert($index)">
+    <div uib-alert ng-repeat="alert in hm.alerts track by $index" ng-class="alert">
       {{alert.msg}}
     </div>
   </div>
-  <button ng-click="hm.signUp()">Sign Up</button>
   <button ng-click='hm.logIn()'>Login</button>
-  <button ng-click="hm.logOut()">Logout</button>
 </div>

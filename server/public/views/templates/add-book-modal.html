@@ -21,7 +21,6 @@
 
 
 <div class="book-selection-options" ng-show="mc.books">
-  <p ng-show="mc.showRecommendAuthor">Because you have read books by {{mc.becauseYouRead}}</p>
   <h4>Select Your Book</h4>
   <div class="books-to-repeat" ng-repeat="books in mc.books track by $index">
     <img ng-src="{{books.volumeInfo.imageLinks.thumbnail}}" />
