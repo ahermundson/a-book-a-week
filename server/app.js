@@ -38,30 +38,30 @@ app.listen(portDecision, function(){
 
 
 
-var transporter = nodemailer.createTransport();
-var cronJob = cron.job("0 */01 * * * *", function() {
-  User.find({},
-    function(err, collection) {
-      if(err) {
-        console.log('Error in GET: ', err);
-      } else {
-          for (var i = 0; i < collection.length; i++) {
-            var mailOptions = {
-              from: 'alex.hermundson@gmail.com',
-              to: collection[i].email,
-              subject: 'hello',
-              html: '<h1 style="text-align: center;">Hi there, ' + collection[i].first_name + '</h1><div class="book_container" style="margin-left: 50px;height: 250px;width: 80%;display: flex;justify-content: center;align-items: center;"><img src="https://books.google.com/books/content?id=8YZoBAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE73v_OF7d4fre9HXgIA1_t1LBVSN19DR_lTe6G-nYaHPT7NAALIh6mpicoirj7tGG7hhX7jKZ-Zo7UYS_dcxofcgiGlsu2MmPLRJqlySUy4Pehls8m4k4U28Og_N6Ilvp6LQxXcP"> <p class="book_info" style="margin-left: 50px;width: 500px;">You are currently at page ' + collection[i].page_at + ' in ' + collection[i].currently_reading + '. You need to read 20 pages to stay on pace for the week!. Click Here to update your progress.</p></div>'
-            };
-            transporter.sendMail(mailOptions, function(error, info) {
-            if(error) {
-              console.log("Error: ", error);
-            } else {
-              console.log("Message Sent: ", info.response);
-            }
-            });
-          }
-      }
-    }
-  );
-});
-cronJob.start();
+// var transporter = nodemailer.createTransport();
+// var cronJob = cron.job("0 */01 * * * *", function() {
+//   User.find({},
+//     function(err, collection) {
+//       if(err) {
+//         console.log('Error in GET: ', err);
+//       } else {
+//           for (var i = 0; i < collection.length; i++) {
+//             var mailOptions = {
+//               from: 'alex.hermundson@gmail.com',
+//               to: collection[i].email,
+//               subject: 'hello',
+//               html: '<h1 style="text-align: center;">Hi there, ' + collection[i].first_name + '</h1><div class="book_container" style="margin-left: 50px;height: 250px;width: 80%;display: flex;justify-content: center;align-items: center;"><img src="https://books.google.com/books/content?id=8YZoBAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE73v_OF7d4fre9HXgIA1_t1LBVSN19DR_lTe6G-nYaHPT7NAALIh6mpicoirj7tGG7hhX7jKZ-Zo7UYS_dcxofcgiGlsu2MmPLRJqlySUy4Pehls8m4k4U28Og_N6Ilvp6LQxXcP"> <p class="book_info" style="margin-left: 50px;width: 500px;">You are currently at page ' + collection[i].page_at + ' in ' + collection[i].currently_reading + '. You need to read 20 pages to stay on pace for the week!. Click Here to update your progress.</p></div>'
+//             };
+//             transporter.sendMail(mailOptions, function(error, info) {
+//             if(error) {
+//               console.log("Error: ", error);
+//             } else {
+//               console.log("Message Sent: ", info.response);
+//             }
+//             });
+//           }
+//       }
+//     }
+//   );
+// });
+// cronJob.start();

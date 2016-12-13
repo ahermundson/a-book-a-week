@@ -1,7 +1,6 @@
 var myApp = angular.module('myApp', ['ngRoute', 'ui.bootstrap', 'angularMoment', 'firebase', 'ngAnimate']);
 
 myApp.config(['$routeProvider', function($routeProvider) {
-
     $routeProvider
         .when('/home', {
             templateUrl: '/views/templates/home.html',
