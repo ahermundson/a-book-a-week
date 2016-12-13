@@ -6,8 +6,7 @@ var Books = require('./book-model').schema;
 
 var userSchema = new Schema({
   email: {type: String, required: true},
-  first_name: String,
-  last_name: String,
+  name: String,
   started_date: Date,
   books: [Books]
 });

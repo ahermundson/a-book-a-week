@@ -8,6 +8,7 @@ myApp.controller("HomeController", ["UserFactory", "$http",  function(UserFactor
   self.logIn = function() {
     UserFactory.logIn().then(function(){
       self.loggedIn = true;
+      console.log("In LogIn.then");
     });
   }
   //user logout. Handled through the factory.

@@ -34,8 +34,21 @@ router.get("/", function(req, res){
       console.log(user);
       if(user == null) {
         // If the user is not in the database, return a forbidden error status
-        console.log('No user found with that email. Have you added this person to the database? Email: ', req.decodedToken.email);
-        res.sendStatus(403);
+        console.log('No user found with that email. Have you added this person to the database? Email: ', req.decodedToken);
+        var newUser = new User({ email: req.decodedToken.email, name: req.decodedToken.name, books: []})
+        newUser.save(function(err, newUser) {
+          if(err) {
+            console.log("Error adding new user ", err);
+          } else {
+            User.findOne({ email: req.decodedToken.email}, function(err, user) {
+              if(err) {
+                console.log("Error getting new User");
+              } else {
+                res.send(user);
+              }
+            });
+          }
+        });
       } else {
         // Based on the clearance level of the individual, give them access to different information
         res.send(user);
