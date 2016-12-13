@@ -17,6 +17,11 @@ myApp.config(['$routeProvider', function($routeProvider) {
             controller: 'NightStandController',
             controllerAs: 'ns'
         })
+        .when('/recommend', {
+            templateUrl: '/views/templates/recommend.html',
+            controller: 'RecommendBookController',
+            controllerAs: 'rb'
+        })
         .otherwise({
             redirectTo: '/home'
         });

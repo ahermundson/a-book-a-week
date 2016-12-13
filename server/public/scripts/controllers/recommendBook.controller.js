@@ -1,11 +1,26 @@
-myApp.controller('ModalCtrl', ['$uibModalInstance', 'BookFactory', 'UserFactory', function ($uibModalInstance, BookFactory, UserFactory) {
+myApp.controller('RecommendBookController', ['BookFactory', 'UserFactory', function (BookFactory, UserFactory) {
+  console.log("In Recommend Book Controller");
+
+
   var self = this;
   self.bookToSearchFor = {};
 
-  //Close Modal on click of cancel
-  self.close = function () {
-    $uibModalInstance.close();
-  };
+  //get random author from database, do a search for that author then display books from that author
+  self.recommend = function() {
+    UserFactory.getCurrentUser()
+    .then(function(currentUser) {
+      console.log("User in recommend");
+      BookFactory.getRandomAuthor(currentUser).then(function(response) {
+        console.log("After getRandom Author: ", response.author);
+        self.bookToSearchFor.author = response.author;
+        self.bookToSearchFor.title = "";
+
+      }).then(function() {
+        self.bookSearch();
+        self.becauseYouRead = self.bookToSearchFor.author;
+        });
+    });
+  }
 
   //Search for books by title / author
   self.bookSearch = function() {
@@ -18,6 +33,7 @@ myApp.controller('ModalCtrl', ['$uibModalInstance', 'BookFactory', 'UserFactory'
 
   //Select book from the books returned from a search
   self.selectBook = function(index) {
+    self.showRecommendAuthor = false;
     self.selectedBook = {
       title: self.books[index].volumeInfo.title,
       author: self.books[index].volumeInfo.authors[0],
@@ -31,10 +47,11 @@ myApp.controller('ModalCtrl', ['$uibModalInstance', 'BookFactory', 'UserFactory'
       BookFactory.addSelectedBook(self.selectedBook, currentUser)
       .then(function(response) {
         self.books = [];
-        console.log("About to close modal");
-        self.close();
       });
     });
 
   }
+
+  self.recommend();
+
 }]);

@@ -1,0 +1,16 @@
+<div class="recommend-book-selection-options" ng-show="rb.books">
+  <h3>Because you have read books by {{rb.becauseYouRead}}</h3>
+  <div class="books-to-repeat" ng-repeat="books in rb.books track by $index">
+    <img ng-src="{{books.volumeInfo.imageLinks.thumbnail}}" />
+    <ul class="book-selection-list" >
+      <li>Title: {{books.volumeInfo.title}}</li>
+      <li>Authors: <span ng-repeat="authors in books.volumeInfo.authors track by $index">{{authors}} </span></li>
+      <li>Pages: {{books.volumeInfo.pageCount}}</li>
+    </ul>
+    <ul class="recommend-book-button-list">
+      <li><button ng-click="rb.selectBook($index)">Select This Book</button></li>
+      <li><button ng-click="rb.previewBook($index)">Preview This Book</button></li>
+    </ul>
+  </div>
+
+</div>

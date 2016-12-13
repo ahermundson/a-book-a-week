@@ -172,3 +172,36 @@ main {
   background-color: rgb(56,63,81);
   color: rgb(221,219,241);
 }
+
+.recommend-book-selection-options {
+  background-color: rgba(56,63,81,0.9);
+  position: relative;
+  padding-bottom: 25px;
+}
+
+.recommend-book-selection-options h3 {
+  margin-top: 25px;
+  text-align: center;
+}
+
+.recommend-book-button-list {
+  position: absolute;
+  right: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  list-style: none;
+  margin: auto
+}
+
+.recommend-book-button-list li {
+  margin: 5px;
+}
+
+.recommend-book-button-list li button {
+  height: 46px;
+  width: 100px;
+  background-color: rgb(221,219,241);
+  border: 2px solid white;
+  color: rgb(56,63,81);
+}
