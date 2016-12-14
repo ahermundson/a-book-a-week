@@ -15,29 +15,41 @@ body {
   box-shadow: 0px 5px 5px black;
 }
 
-
+.book_container h4 {
+  text-align: center;
+  margin-bottom: 0;
+}
 
 .current_book_info {
-  background-color: rgb(56,63,81);
   display: flex;
   justify-content: space-around;
   align-items: center;
   padding: 20px;
-  color: white;
 }
 
+
+/* applies to current book information and buttons */
 .current_book_info ul {
   list-style: none;
+  font-family: 'Archivo Narrow', sans-serif;
 }
 
-h1 {
+/* Details list on book currently being read */
+.current-book-details {
+  font-size: 18px;
+}
+
+/*vertically aligns site title in header*/
+h2 {
   margin: 0;
 }
 
+
+
 .header_nav {
-  height: 100px;
+  height: 55px;
   background-color: rgb(56,63,81);
-  color: rgb(221,219,241);
+  color: white;
   display: flex;
 }
 
@@ -67,15 +79,23 @@ h1 {
 
 .nav_head {
   margin-right: auto;
+  font-family: 'Libre Baskerville', serif;
+}
+
+.nav_list {
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .nav_list li {
   font-size: 18px;
-  padding: 15px 15px;
+  padding: 10px 10px;
 }
 
 .nav_list li a {
-  color: rgb(221,219,241);
+  color: white;
+  font-size: 16px;
+  font-family: 'Archivo Narrow', sans-serif;
 }
 
 main {
@@ -111,13 +131,18 @@ main {
 
 .night-stand {
   width: 100%;
-  background-color: rgba(221,219,241,0.7);
-  color: rgb(56,63,81);
+  background-color: rgba(56,63,81,0.9);
+  color: white;
 }
 
 .night-stand-header {
   margin: 0 auto;
   text-align: center;
+}
+
+.night-stand-header h1 {
+  padding-top: 15px;
+  font-family: 'Libre Baskerville', serif;
 }
 
 .books-to-repeat {
@@ -142,7 +167,7 @@ main {
 .add-book-button {
   margin: 10px;
   background-color: rgb(221,219,241);
-  border: 1px solid rgb(56,63,81);
+  border: 2px solid white;
   color: rgb(56,63,81);
   padding: 10px;
   border-radius: 0;
@@ -165,8 +190,9 @@ main {
 }
 
 .progress-bar-style {
-  background-color: rgb(51,32,42);
-  color: white;
+  background-color: rgb(221,219,241);
+  color: rgb(56,63,81);
+  font-weight: bold;
 }
 
 .night-stand-buttons ul {
@@ -221,22 +247,67 @@ main {
   color: rgb(56,63,81);
 }
 
+.book-shelf-main h1 {
+  margin-top: 5px;
+  font-family: 'Libre Baskerville', serif;
+}
+
+.book-shelf-main {
+  padding: 25px;
+  background-color: rgba(128,128,128,0.9);
+}
+
 .books-accordion {
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
 
+.panel-group .panel {
+  border-radius: 0;
+}
+
 .panel-default {
   background-color: rgba(56,63,81,0.9);
   color: rgb(221,219,241);
+  border-color: white;
+  border-radius: 0;
+}
+
+.on-nightstand {
+  background-color: rgb(51,32,42);
 }
 
 .book-details ul {
   list-style: none;
+  font-size: 16px;
+  color: white;
 }
 
 .panel-default>.panel-heading {
-  background-color: rgb(51,32,42);
+  background-color: rgba(56,63,81,0.9);
   color: white;
+}
+
+.modal-header {
+  border-bottom: none;
+}
+.modal-footer {
+  border-top: none;
+}
+
+.update-progress-modal {
+  background-color: rgb(60,122,137);
+  color: white;
+}
+
+.update-progress-modal input {
+  color: rgb(60,122,137);
+}
+
+.progress-button {
+  background-color: rgb(246,130,140);
+  border: 2px solid white;
+  color: white;
+  border-radius: 0;
 }

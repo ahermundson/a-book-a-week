@@ -1,41 +1,44 @@
-<h1>Book Shelf</h1>
+<div class="book-shelf-main">
+  <h1>Book Shelf</h1>
 
-<p>You have read {{bs.totalRead}} books so far this year.</p>
+  <p>You have read {{bs.totalRead}} books so far this year.</p>
 
-<div>
+  <div>
 
-  <script type="text/ng-template" id="group-template.html">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a href tabindex="0" class="accordion-toggle" ng-click="toggleOpen()" uib-accordion-transclude="heading">
-            <span uib-accordion-header ng-class="{'text-muted': isDisabled}">
-              {{heading}}
-            </span>
-          </a>
-        </h4>
-      </div>
-      <div class="panel-collapse collapse" uib-collapse="!isOpen">
-        <div class="panel-body" style="text-align: right" ng-transclude></div>
-      </div>
-    </div>
-  </script>
-
-  <uib-accordion close-others="bs.oneAtATime">
-    <div uib-accordion-group class="panel-default" heading="{{collection.title}}" ng-repeat="collection in bs.collection">
-      <div class="books-accordion">
-        <div class="book-image">
-          <img ng-src="{{collection.book_thumbnail}}"/>
+    <script type="text/ng-template" id="group-template.html">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a href tabindex="0" class="accordion-toggle" ng-click="toggleOpen()" uib-accordion-transclude="heading">
+              <span uib-accordion-header ng-class="{'text-muted': isDisabled}">
+                {{heading}}
+              </span>
+            </a>
+          </h4>
         </div>
-        <div class="book-details">
-          <ul>
-            <li>Title: {{collection.title}}</li>
-            <li>Author: {{collection.author}}</li>
-            <li>Pages: {{collection.pages}}</li>
-            <li>Finished On {{collection.book_finished_date | date : format : 'fullDate'}}</li>
-          </ul>
+        <div class="panel-collapse collapse" uib-collapse="!isOpen">
+          <div class="panel-body" style="text-align: right" ng-transclude></div>
         </div>
       </div>
-    </div>
-  </uib-accordion>
+    </script>
+
+    <uib-accordion close-others="bs.oneAtATime">
+      <div uib-accordion-group class="panel-default" heading="{{collection.title}}" ng-repeat="collection in bs.collection" ng-class="{'on-nightstand': {{collection.currently_reading}}}">
+        <div class="books-accordion">
+          <div class="book-image">
+            <img ng-src="{{collection.book_thumbnail}}"/>
+          </div>
+          <div class="book-details">
+            <ul>
+              <li ng-show=collection.currently_reading>CURRENTLY READING</li>
+              <li>{{collection.title}}</li>
+              <li>by {{collection.author}}</li>
+              <li>Pages: {{collection.pages}}</li>
+              <li ng-hide=collection.currently_reading>Finished On {{collection.book_finished_date | date : format : 'fullDate'}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </uib-accordion>
+  </div>
 </div>
