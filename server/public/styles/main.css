@@ -15,6 +15,11 @@ body {
   box-shadow: 0px 5px 5px black;
 }
 
+.book_container h4 {
+  text-align: center;
+  margin-bottom: 0;
+}
+
 .current_book_info {
   display: flex;
   justify-content: space-around;
@@ -66,6 +71,7 @@ h2 {
 
 .nav_head {
   margin-right: auto;
+  font-family: 'Libre Baskerville', serif;
 }
 
 .nav_list {
@@ -125,6 +131,10 @@ main {
   text-align: center;
 }
 
+.night-stand-header h1 {
+  padding-top: 15px;
+}
+
 .books-to-repeat {
   display: flex;
   align-items: center;
@@ -147,7 +157,7 @@ main {
 .add-book-button {
   margin: 10px;
   background-color: rgb(221,219,241);
-  border: 1px solid rgb(56,63,81);
+  border: 2px solid white;
   color: rgb(56,63,81);
   padding: 10px;
   border-radius: 0;
@@ -274,6 +284,10 @@ main {
 .update-progress-modal {
   background-color: rgb(60,122,137);
   color: white;
+}
+
+.update-progress-modal input {
+  color: rgb(60,122,137);
 }
 
 .progress-button {
