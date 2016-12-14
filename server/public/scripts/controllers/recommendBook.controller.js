@@ -34,6 +34,7 @@ myApp.controller('RecommendBookController', ['BookFactory', 'UserFactory', '$uib
   //Select book from the books returned from a search
   self.selectBook = function(index) {
     $location.path('/night-stand');
+    console.log(self.books[index]);
     self.selectedBook = {
       title: self.books[index].volumeInfo.title,
       author: self.books[index].volumeInfo.authors[0],
@@ -55,16 +56,16 @@ myApp.controller('RecommendBookController', ['BookFactory', 'UserFactory', '$uib
   self.previewBook = function(index) {
     self.isbn = self.books[index].volumeInfo.industryIdentifiers[0].identifier;
     console.log("ISBN: ", self.isbn);
-    GBS_insertPreviewButtonPopup('ISBN:' + self.isbn);
-    // var modalInstance = $uibModal.open({
-    //   templateUrl: './views/templates/preview-book-modal.html',
-    //   controller: 'PreviewModalController',
-    //   controllerAs: 'pm'
-    // });
-    // modalInstance.result.then(function(response) {
-    //   console.log("modal result: ", response);
-    //   getBooks();
-    // });
+    // GBS_insertPreviewButtonPopup('ISBN:' + self.isbn);
+    var modalInstance = $uibModal.open({
+      templateUrl: './views/templates/preview-book-modal.html',
+      controller: 'PreviewModalController',
+      controllerAs: 'pm'
+    });
+    modalInstance.result.then(function(response) {
+      console.log("modal result: ", response);
+      getBooks();
+    });
   }
 
   self.recommend();

@@ -9,7 +9,7 @@
     </ul>
     <ul class="recommend-book-button-list">
       <li><button ng-click="rb.selectBook($index)">Select This Book</button></li>
-      <li><button ng-click="rb.previewBook($index)">Preview This Book</button></li>
+      <li ng-show="books.volumeInfo.previewLink !== undefined"><a href="{{books.volumeInfo.previewLink}}" target="_blank"><button>Preview This Book</button></a></li>
     </ul>
   </div>
 
