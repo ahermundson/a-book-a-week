@@ -23,17 +23,18 @@
     </script>
 
     <uib-accordion close-others="bs.oneAtATime">
-      <div uib-accordion-group class="panel-default" heading="{{collection.title}}" ng-repeat="collection in bs.collection">
+      <div uib-accordion-group class="panel-default" heading="{{collection.title}}" ng-repeat="collection in bs.collection" ng-class="{'on-nightstand': {{collection.currently_reading}}}">
         <div class="books-accordion">
           <div class="book-image">
             <img ng-src="{{collection.book_thumbnail}}"/>
           </div>
           <div class="book-details">
             <ul>
-              <li>Title: {{collection.title}}</li>
-              <li>Author: {{collection.author}}</li>
+              <li ng-show=collection.currently_reading>CURRENTLY READING</li>
+              <li>{{collection.title}}</li>
+              <li>by {{collection.author}}</li>
               <li>Pages: {{collection.pages}}</li>
-              <li>Finished On {{collection.book_finished_date | date : format : 'fullDate'}}</li>
+              <li ng-hide=collection.currently_reading>Finished On {{collection.book_finished_date | date : format : 'fullDate'}}</li>
             </ul>
           </div>
         </div>
