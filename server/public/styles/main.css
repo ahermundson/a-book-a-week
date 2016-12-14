@@ -36,7 +36,7 @@ h2 {
 .header_nav {
   height: 55px;
   background-color: rgb(56,63,81);
-  color: rgb(221,219,241);
+  color: white;
   display: flex;
 }
 
@@ -79,7 +79,7 @@ h2 {
 }
 
 .nav_list li a {
-  color: rgb(221,219,241);
+  color: white;
   font-size: 14px;
 }
 
@@ -227,23 +227,40 @@ main {
   color: rgb(56,63,81);
 }
 
+.book-shelf-main h1 {
+  margin-top: 5px;
+}
+
+.book-shelf-main {
+  padding: 25px;
+  background-color: rgba(128,128,128,0.9);
+}
+
 .books-accordion {
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
 
+.panel-group .panel {
+  border-radius: 0;
+}
+
 .panel-default {
   background-color: rgba(56,63,81,0.9);
   color: rgb(221,219,241);
+  border-color: white;
+  border-radius: 0;
 }
 
 .book-details ul {
   list-style: none;
+  font-size: 16px;
+  color: white;
 }
 
 .panel-default>.panel-heading {
-  background-color: rgb(51,32,42);
+  background-color: rgba(56,63,81,0.9);
   color: white;
 }
 
