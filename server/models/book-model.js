@@ -12,7 +12,8 @@ var bookSchema = new Schema({
   book_thumbnail: String,
   isbn: Number,
   currently_reading: {type: Boolean, default: true},
-  page_at: {type: Number, default: 0}
+  page_at: {type: Number, default: 0},
+  description: String
 });
 
 bookSchema.pre('save', function(next) {

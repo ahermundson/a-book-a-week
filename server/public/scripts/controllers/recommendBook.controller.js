@@ -42,7 +42,8 @@ myApp.controller('RecommendBookController', ['BookFactory', 'UserFactory', '$uib
       book_start_date: moment().format(),
       finished_by_goal: moment().add(1, 'week'),
       book_thumbnail: self.books[index].volumeInfo.imageLinks.thumbnail,
-      isbn: self.books[index].volumeInfo.industryIdentifiers[0].identifier
+      isbn: self.books[index].volumeInfo.industryIdentifiers[0].identifier,
+      description: self.books[index].volumeInfo.description
     };
     UserFactory.getCurrentUser().then(function(currentUser) {
       BookFactory.addSelectedBook(self.selectedBook, currentUser)

@@ -43,6 +43,7 @@
               <li>by {{collection.author}}</li>
               <li>Pages: {{collection.pages}}</li>
               <li ng-hide=collection.currently_reading>Finished On {{collection.book_finished_date | date : format : 'fullDate'}}</li>
+              <li><em>{{collection.description}}</em></li>
             </ul>
           </div>
         </div>
