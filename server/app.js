@@ -36,7 +36,7 @@ app.listen(portDecision, function(){
 });
 
 
-
+//DAILY EMAIL
 
 // var transporter = nodemailer.createTransport();
 // var cronJob = cron.job("0 */01 * * * *", function() {

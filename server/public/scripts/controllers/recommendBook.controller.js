@@ -1,4 +1,4 @@
-myApp.controller('RecommendBookController', ['BookFactory', 'UserFactory', '$uibModal', function (BookFactory, UserFactory, $uibModal) {
+myApp.controller('RecommendBookController', ['BookFactory', 'UserFactory', '$uibModal', '$location', function (BookFactory, UserFactory, $uibModal, $location) {
   console.log("In Recommend Book Controller");
 
 
@@ -33,6 +33,7 @@ myApp.controller('RecommendBookController', ['BookFactory', 'UserFactory', '$uib
 
   //Select book from the books returned from a search
   self.selectBook = function(index) {
+    $location.path('/night-stand');
     self.selectedBook = {
       title: self.books[index].volumeInfo.title,
       author: self.books[index].volumeInfo.authors[0],
