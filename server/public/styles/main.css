@@ -15,8 +15,6 @@ body {
   box-shadow: 0px 5px 5px black;
 }
 
-
-
 .current_book_info {
   display: flex;
   justify-content: space-around;
@@ -28,12 +26,15 @@ body {
   list-style: none;
 }
 
-h1 {
+/*vertically aligns site title in header*/
+h2 {
   margin: 0;
 }
 
+
+
 .header_nav {
-  height: 100px;
+  height: 55px;
   background-color: rgb(56,63,81);
   color: rgb(221,219,241);
   display: flex;
@@ -67,13 +68,19 @@ h1 {
   margin-right: auto;
 }
 
+.nav_list {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
 .nav_list li {
   font-size: 18px;
-  padding: 15px 15px;
+  padding: 10px 10px;
 }
 
 .nav_list li a {
   color: rgb(221,219,241);
+  font-size: 14px;
 }
 
 main {
