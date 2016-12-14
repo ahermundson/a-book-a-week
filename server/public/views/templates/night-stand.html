@@ -25,9 +25,9 @@
       <h4>Read {{ns.pagesPerDay}} pages today to stay on track</h4>
       <div class="current_book_info">
         <img ng-src="{{ns.currentBook.book_thumbnail}}" alt="" />
-        <ul>
-          <li>Title: {{ns.currentBook.title}}</li>
-          <li>Author: {{ns.currentBook.author}}</li>
+        <ul class="current-book-details">
+          <li>{{ns.currentBook.title}}</li>
+          <li>by {{ns.currentBook.author}}</li>
           <li>Progress: On page {{ns.currentBook.page_at}} of {{ns.currentBook.pages}}</li>
           <li title="Number Includes Today">Days Left To Finish: {{ns.daysToGoal}}</li>
         </ul>
