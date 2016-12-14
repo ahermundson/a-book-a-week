@@ -296,6 +296,22 @@ main {
   border-top: none;
 }
 
+.add-book-modal {
+  background-color: rgb(60,122,137);
+  color: white;
+}
+
+.add-book-modal input {
+  color: rgb(60,122,137);
+}
+
+.add-book-button-modal {
+  background-color: rgb(246,130,140);
+  border: 2px solid white;
+  color: white;
+  border-radius: 0;
+}
+
 .update-progress-modal {
   background-color: rgb(60,122,137);
   color: white;

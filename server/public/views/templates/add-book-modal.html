@@ -1,35 +1,36 @@
+<div class="add-book-modal">
+  <div class="modal-header">
+    <h3 class="modal-title" id="modal-title">Search for your book</h3>
+  </div>
+  <div class="modal-body" id="modal-body">
+    <form>
+      <label for="newBookTitle">Title</label>
+      <input name="newBookTitle" ng-model="mc.bookToSearchFor.title" required>
 
-<div class="modal-header">
-  <h3 class="modal-title" id="modal-title">Search for your book!</h3>
-</div>
-<div class="modal-body" id="modal-body">
-  <form>
-    <label for="newBookTitle">Title</label>
-    <input name="newBookTitle" ng-model="mc.bookToSearchFor.title" required>
+      <label for="newBookAuthor">Author</label>
+      <input name="newBookAuthor" ng-model="mc.bookToSearchFor.author">
 
-    <label for="newBookAuthor">Author</label>
-    <input name="newBookAuthor" ng-model="mc.bookToSearchFor.author">
+      <div class="modal-footer">
+        <button class="btn add-book-button-modal" type="button" ng-click="mc.bookSearch()">Search</button>
+        <button class="btn add-book-button-modal" type="button" ng-click="mc.close()">Cancel</button>
+      </div>
 
-    <div class="modal-footer">
-      <button class="btn btn-primary" type="button" ng-click="mc.bookSearch()">Search</button>
-      <button class="btn btn-warning" type="button" ng-click="mc.close()">Cancel</button>
-    </div>
-
-  </form>
-</div>
-
-
-
-<div class="book-selection-options" ng-show="mc.books">
-  <h4>Select Your Book</h4>
-  <div class="books-to-repeat" ng-repeat="books in mc.books track by $index">
-    <img ng-src="{{books.volumeInfo.imageLinks.thumbnail}}" />
-    <ul class="book-selection-list" >
-      <li>Title: {{books.volumeInfo.title}}</li>
-      <li>Authors: <span ng-repeat="authors in books.volumeInfo.authors track by $index">{{authors}} </span></li>
-      <li>Pages: {{books.volumeInfo.pageCount}}</li>
-      <button ng-click="mc.selectBook($index)">Select This Book</button>
-    </ul>
+    </form>
   </div>
 
+
+
+  <div class="book-selection-options" ng-show="mc.books">
+    <h4>Select Your Book</h4>
+    <div class="books-to-repeat" ng-repeat="books in mc.books track by $index">
+      <img ng-src="{{books.volumeInfo.imageLinks.thumbnail}}" />
+      <ul class="book-selection-list" >
+        <li>Title: {{books.volumeInfo.title}}</li>
+        <li>Authors: <span ng-repeat="authors in books.volumeInfo.authors track by $index">{{authors}} </span></li>
+        <li>Pages: {{books.volumeInfo.pageCount}}</li>
+        <button class="add-book-button-modal" ng-click="mc.selectBook($index)">Select This Book</button>
+      </ul>
+    </div>
+
+  </div>
 </div>

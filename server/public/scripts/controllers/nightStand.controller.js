@@ -36,24 +36,20 @@ myApp.controller("NightStandController", ["$http", "BookFactory", "UserFactory",
 
   //opens modal with recommended books for user based on an author they have read
   self.openRecommendBook = function() {
-    
+
   }
 
   //opens add book modal
   self.openAddBook = function () {
-    if (self.noCurrentBook === false) {
-      alert("You already have a book on your nightstand.");
-    } else {
-      var modalInstance = $uibModal.open({
-        templateUrl: './views/templates/add-book-modal.html',
-        controller: 'ModalCtrl',
-        controllerAs: 'mc'
-      });
-      modalInstance.result.then(function(response) {
-        console.log("modal result: ", response);
-        getBooks();
-      });
-    }
+    var modalInstance = $uibModal.open({
+      templateUrl: './views/templates/add-book-modal.html',
+      controller: 'ModalCtrl',
+      controllerAs: 'mc'
+    });
+    modalInstance.result.then(function(response) {
+      console.log("modal result: ", response);
+      getBooks();
+    });
   };
 
 
