@@ -165,7 +165,7 @@ myApp.factory('BookFactory', ["$http", "UserFactory", "$q", function($http, User
           console.log("Collection from database: ", collection);
 
           //storing collection to send back to controller
-          deferred.resolve(collection[randomNumber(0, collection.length)]);
+          deferred.resolve(collection[randomNumber(0, collection.length - 1)]);
         },
         function(err) {
           console.log("Error with put request: ", err);

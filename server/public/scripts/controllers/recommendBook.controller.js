@@ -11,6 +11,7 @@ myApp.controller('RecommendBookController', ['BookFactory', 'UserFactory', '$uib
     .then(function(currentUser) {
       console.log("User in recommend");
       BookFactory.getRandomAuthor(currentUser).then(function(response) {
+        console.log("Response from getRandomAuthor: ", response);
         console.log("After getRandom Author: ", response.author);
         self.bookToSearchFor.author = response.author;
         self.bookToSearchFor.title = "";

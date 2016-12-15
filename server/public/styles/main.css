@@ -110,6 +110,7 @@ main {
   align-items: center;
   background-color: rgba(221,219,241,0.9);
   color: rgb(56,63,81);
+  font-family: 'Libre Baskerville', serif;
 }
 
 .home_body p {
@@ -143,6 +144,11 @@ main {
 .night-stand-header h1 {
   padding-top: 15px;
   font-family: 'Libre Baskerville', serif;
+}
+
+.night-stand-header a {
+  color: white;
+  text-decoration: underline;
 }
 
 .books-to-repeat {
@@ -186,7 +192,12 @@ main {
 .night-stand-progress {
   width: 80%;
   text-align: center;
+  font-family: 'Libre Baskerville', serif;
   margin: 0 auto;
+}
+
+.book_container  h4 {
+  font-family: 'Libre Baskerville', serif;
 }
 
 .progress {
@@ -254,7 +265,7 @@ main {
 
 .book-shelf-main h1 {
   margin-top: 5px;
-  font-family: 'Libre Baskerville', serif;
+  /*font-family: 'Libre Baskerville', serif;*/
 }
 
 .book-shelf-main {
@@ -262,10 +273,18 @@ main {
   background-color: rgba(128,128,128,0.9);
 }
 
+.book-shelf-progress {
+  font-family: 'Libre Baskerville', serif;
+}
+
 .books-accordion {
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+
+.book-shelf-accordion-container {
+  font-family: 'Archivo Narrow', sans-serif;
 }
 
 .panel-group .panel {
