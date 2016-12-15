@@ -3,6 +3,7 @@
     <h1>Night Stand</h1>
 
     <div ng-show="ns.noCurrentBook">
+      <!-- Alerts Container -->
       <div>
         <div uib-alert ng-repeat="alert in ns.alerts track by $index" ng-class="'alert-' + (alert.type || 'warning')" close="ns.closeAlert($index)">{{alert.msg}}</div>
       </div>
@@ -16,10 +17,6 @@
 
 
   <div class="night-stand-book-info">
-    <!-- Alerts Container -->
-
-
-
     <div class="book_container fade-out" ng-show="ns.showCurrentBookInfo" >
       <h4>Read {{ns.pagesPerDay}} pages today to stay on track</h4>
       <div class="current_book_info">

@@ -58,6 +58,8 @@ myApp.factory('BookFactory', ["$http", "UserFactory", "$q", function($http, User
 
   }
 
+  
+
 
   //Add selected book to users database
   function addSelectedBook(bookToAdd, currentUser) {
@@ -208,7 +210,7 @@ myApp.factory('BookFactory', ["$http", "UserFactory", "$q", function($http, User
 
 }])
 
-
+//random number function used in the random author function
 function randomNumber(min, max){
     return Math.floor(Math.random() * (1 + max - min) + min);
 }
