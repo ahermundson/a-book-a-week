@@ -3,24 +3,24 @@
     <h1>Night Stand</h1>
 
     <div ng-show="ns.noCurrentBook">
-
+      <div>
+        <div uib-alert ng-repeat="alert in ns.alerts track by $index" ng-class="'alert-' + (alert.type || 'warning')" close="ns.closeAlert($index)">{{alert.msg}}</div>
+      </div>
         <button type="button" class="btn btn-default add-book-button" ng-click="ns.openAddBook('lg')">Add A New Book</button>
         <p>Need a recommendation? <a href="#recommend">Click here.</a>
-
+        <div class="no_current_book" ng-show="ns.noCurrentBook">
+          <h4>You currently do not have a book on your Night Stand. Click Add a New book to add your next book.</h4>
+        </div>
     </div>
   </div>
 
 
   <div class="night-stand-book-info">
     <!-- Alerts Container -->
-    <div>
-      <div uib-alert ng-repeat="alert in ns.alerts track by $index" ng-class="'alert-' + (alert.type || 'warning')" close="ns.closeAlert($index)">{{alert.msg}}</div>
-    </div>
-    <div class="no_current_book" ng-show="ns.noCurrentBook">
-      <h4>You currently do not have a book on your Night Stand. Click Add a New book to add your next book.</h4>
-    </div>
 
-    <div class="book_container" ng-show="ns.showCurrentBookInfo" >
+
+
+    <div class="book_container fade-out" ng-show="ns.showCurrentBookInfo" >
       <h4>Read {{ns.pagesPerDay}} pages today to stay on track</h4>
       <div class="current_book_info">
         <img ng-src="{{ns.currentBook.book_thumbnail}}" alt="" />
@@ -41,7 +41,7 @@
         </div>
       </div>
       <div class="night-stand-progress">
-        <h3>Progress</h3>
+        <h3>Progress Towards Weekly Goal</h3>
         <div class="row">
             <div class="col-md-12"><uib-progressbar ng-max="ns.currentBook.pages" value="ns.currentBook.page_at" type="style"><i>{{ns.currentBook.page_at}} / {{ns.currentBook.pages}}</i></uib-progressbar></div>
         </div>

@@ -81,9 +81,9 @@ myApp.controller("NightStandController", ["$http", "BookFactory", "UserFactory",
       BookFactory.finishedBook(dataToUpdate, user)
       .then(function() {
         getBooks();
+        console.log(self.showAddBook);
       });
     });
-
   }
 
 

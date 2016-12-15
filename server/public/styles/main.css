@@ -189,10 +189,15 @@ main {
   margin: 0 auto;
 }
 
+.progress {
+  border-radius: 0;
+}
+
 .progress-bar-style {
-  background-color: rgb(60,122,137);
-  color: white;
+  background-color: rgb(221,219,241);
+  color: rgb(56,63,81);
   font-weight: bold;
+  font-size: 17px;
 }
 
 .night-stand-buttons ul {
@@ -327,3 +332,22 @@ main {
   color: white;
   border-radius: 0;
 }
+
+
+/*Night Stand Fade Out*/
+/*.fade-out.ng-hide {
+  opacity: 0;
+}
+
+.fade-out.ng-hide-remove,
+.fade-out.ng-hide-add {
+  display: block !important;
+}
+
+.fade-out.ng-hide-remove {
+  transition: all linear 1000ms;
+}
+
+.fade-out.ng-hide-add {
+  transition: all linear 500ms;
+}*/
