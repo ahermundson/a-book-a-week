@@ -56,7 +56,7 @@ var cronJob = cron.job("0 */01 * * * *", function() {
                   from: 'noreply@addabook.com',
                   to: collection[i].email,
                   subject: 'Your A Book A Week Daily Update',
-                  html: '<h1 style="text-align: center;color: rgb(56,63,81);">Hi ' + collection[i].name + '</h1><div class="book_container" style="margin-left: 50px;height: 250px;width: 65%;display: flex;align-items: center;"><div style="height: 100%;;width: 33%;"><img src="' + collection[i].books[j].book_thumbnail + '" style="margin: 0 auto;"></div><div style="height: 100%;;width: 66%;"><p class="book_info" style="text-align: center;color: rgb(56,63,81);margin-left: 50px;width: 500px;">You are currently at page ' + collection[i].books[j].page_at + ' in <b>' + collection[i].books[j].title + '</b>. You need to read ' + toRead + ' pages to stay on pace for the week! <a href="http://localhost:3000" style="color: rgb(56,63,81);">Click Here to update your progress.</a></p></div></div>'
+                  html: '<body style="background-color: rgb(56,63,81);color: white;"><h1 style="text-align: center;"><br>Here Is Your Dailiy Update From A Book A Week</h1><div class="book_container" style="margin-left: 50px;height: 250px;width: 65%;display: flex;align-items: center;"><div style="height: 100%;;width: 33%;"><img src="' + collection[i].books[j].book_thumbnail + '" style="margin: 0 auto;"></div><div style="height: 100%;;width: 66%;"><p class="book_info" style="text-align: center;margin-left: 50px;width: 500px;">Hi ' + collection[i].name + ', you are currently at page ' + collection[i].books[j].page_at + ' in <b>' + collection[i].books[j].title + '</b>. You need to read ' + toRead + ' pages today to stay on pace for the week! <a href="http://localhost:3000" style="color: rgb(60,122,137)">Click Here to update your progress.</a></p><br></div></div></body>'
                 };
                 transporter.sendMail(mailOptions, function(error, info) {
                 if(error) {
@@ -86,4 +86,4 @@ function pagesToReadPerDay(days, pages) {
   console.log("Days: " + days + "Pages: ", pages);
   return Math.round(pages / days);
 }
-cronJob.start();
+// cronJob.start();
