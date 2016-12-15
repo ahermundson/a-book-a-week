@@ -1,15 +1,15 @@
 var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
-var nodemailer = require('nodemailer');
 var app = express();
 var portDecision = process.env.PORT || 3000;
 var decoder = require('./modules/decoder');
 var mongoConnection = require('./modules/mongo-connection');
 var users = require('./routes/users');
 var books = require('./routes/books');
-var cron = require('cron');
+var nodemailer = require('nodemailer');
 var User = require('./models/user');
+var cron = require('cron');
 
 
 app.use(express.static('server/public'));
@@ -37,7 +37,6 @@ app.listen(portDecision, function(){
 
 
 //DAILY EMAIL
-
 var transporter = nodemailer.createTransport();
 var cronJob = cron.job("0 */01 * * * *", function() {
   User.find({},
@@ -50,13 +49,14 @@ var cronJob = cron.job("0 */01 * * * *", function() {
             for (var j = 0; j < collection[i].books.length; j++) {
               if (collection[i].books[j].currently_reading === true) {
                 hasCurrentBook = true;
-                var pageGoal = Number(collection[i].books[j].pages) - Number(collection[i].books[j].page_at);
-                console.log("Page Goal: ", pageGoal);
+                var pagesLeft = Number(collection[i].books[j].pages) - Number(collection[i].books[j].page_at);
+                var daysLeft = getTimeRemaining(collection[i].books[j].finished_by_goal);
+                var toRead = pagesToReadPerDay(daysLeft, pagesLeft)
                 var mailOptions = {
-                  from: 'alex.hermundson@gmail.com',
+                  from: 'noreply@addabook.com',
                   to: collection[i].email,
-                  subject: 'hello',
-                  html: '<h1 style="text-align: center;">Hi there, ' + collection[i].name + '</h1><div class="book_container" style="margin-left: 50px;height: 250px;width: 80%;display: flex;justify-content: center;align-items: center;"><img src="https://books.google.com/books/content?id=8YZoBAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE73v_OF7d4fre9HXgIA1_t1LBVSN19DR_lTe6G-nYaHPT7NAALIh6mpicoirj7tGG7hhX7jKZ-Zo7UYS_dcxofcgiGlsu2MmPLRJqlySUy4Pehls8m4k4U28Og_N6Ilvp6LQxXcP"> <p class="book_info" style="margin-left: 50px;width: 500px;">You are currently at page ' + collection[i].books[j].page_at + ' in ' + collection[i].books[j].title + '. You need to read ' + pageGoal + ' pages to stay on pace for the week!. Click Here to update your progress.</p></div>'
+                  subject: 'Your A Book A Week Daily Update',
+                  html: '<h1 style="text-align: center;color: rgb(56,63,81);">Hi ' + collection[i].name + '</h1><div class="book_container" style="margin-left: 50px;height: 250px;width: 65%;display: flex;justify-content: center;align-items: center;"><div style="height: 100%;;width: 33%;"><img src="' + collection[i].books[j].book_thumbnail + '" style="margin: 0 auto;"></div><div style="height: 100%;;width: 33%;"><p class="book_info" style="text-align: center;color: rgb(56,63,81);margin-left: 50px;width: 500px;">You are currently at page ' + collection[i].books[j].page_at + ' in <b>' + collection[i].books[j].title + '</b>. You need to read ' + toRead + ' pages to stay on pace for the week!</p></div><div style="height: 100%;;width: 33%;"><a href="localhost:3000" style="text-align: center;color: rgb(56,63,81);">Click Here to update your progress.</a></div></div>'
                 };
                 transporter.sendMail(mailOptions, function(error, info) {
                 if(error) {
@@ -74,4 +74,16 @@ var cronJob = cron.job("0 */01 * * * *", function() {
     }
   );
 });
+
+//Calculate days left to finish book
+function getTimeRemaining(endtime){
+  var t = Date.parse(endtime) - Date.parse(new Date());
+  var days = Math.floor( t/(1000*60*60*24) );
+  return days + 1;
+}
+//Calculate pages the user would need to read per day to meet goal
+function pagesToReadPerDay(days, pages) {
+  console.log("Days: " + days + "Pages: ", pages);
+  return Math.round(pages / days);
+}
 // cronJob.start();
