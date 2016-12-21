@@ -15,7 +15,7 @@ body {
   box-shadow: 0px 5px 5px black;
 }
 
-.book_container h4 {
+.book_container h3 {
   text-align: center;
   margin-bottom: 0;
 }
@@ -162,7 +162,7 @@ main {
 }
 
 .book-selection-list {
-
+  list-style: none;
 }
 
 .recommend-book-selection-list {
@@ -196,7 +196,7 @@ main {
   margin: 0 auto;
 }
 
-.book_container  h4 {
+.book_container  h3 {
   font-family: 'Libre Baskerville', serif;
 }
 
@@ -208,7 +208,7 @@ main {
   background-color: rgb(221,219,241);
   color: rgb(56,63,81);
   font-weight: bold;
-  font-size: 17px;
+  font-size: 19px;
 }
 
 .night-stand-buttons ul {

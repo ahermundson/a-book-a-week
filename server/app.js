@@ -10,10 +10,13 @@ var books = require('./routes/books');
 var nodemailer = require('nodemailer');
 var User = require('./models/user');
 var cron = require('cron');
+var amazon = require('./routes/amazon');
 
 
 app.use(express.static('server/public'));
 app.use(bodyParser.json());
+
+app.use('/amazon', amazon);
 
 //Connect to database
 mongoConnection.connect();
@@ -79,7 +82,7 @@ var cronJob = cron.job("0 */01 * * * *", function() {
 function getTimeRemaining(endtime){
   var t = Date.parse(endtime) - Date.parse(new Date());
   var days = Math.floor( t/(1000*60*60*24) );
-  return days + 1;
+  return days;
 }
 //Calculate pages the user would need to read per day to meet goal
 function pagesToReadPerDay(days, pages) {

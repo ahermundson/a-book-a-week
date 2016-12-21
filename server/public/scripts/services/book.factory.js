@@ -6,6 +6,7 @@ myApp.factory('BookFactory', ["$http", "UserFactory", "$q", function($http, User
   var books;
   var collection;
   var book_id;
+  var amazon;
   //get users book list from database
   function getBooks(currentUser) {
     console.log("in get books in book factory: ", currentUser);
@@ -58,7 +59,6 @@ myApp.factory('BookFactory', ["$http", "UserFactory", "$q", function($http, User
 
   }
 
-  
 
 
   //Add selected book to users database

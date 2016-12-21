@@ -25,8 +25,8 @@
     <div class="books-to-repeat" ng-repeat="books in mc.books track by $index">
       <img ng-src="{{books.volumeInfo.imageLinks.thumbnail}}" />
       <ul class="book-selection-list" >
-        <li>Title: {{books.volumeInfo.title}}</li>
-        <li>Authors: <span ng-repeat="authors in books.volumeInfo.authors track by $index">{{authors}} </span></li>
+        <li>{{books.volumeInfo.title}}</li>
+        <li>by <span ng-repeat="authors in books.volumeInfo.authors track by $index">{{authors}} </span></li>
         <li>Pages: {{books.volumeInfo.pageCount}}</li>
         <button class="add-book-button-modal" ng-click="mc.selectBook($index)">Select This Book</button>
       </ul>

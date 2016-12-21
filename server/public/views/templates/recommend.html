@@ -3,9 +3,10 @@
   <div class="books-to-repeat" ng-repeat="books in rb.books track by $index">
     <img ng-src="{{books.volumeInfo.imageLinks.thumbnail}}" />
     <ul class="recommend-book-selection-list" >
-      <li>Title: {{books.volumeInfo.title}}</li>
-      <li>Authors: <span ng-repeat="authors in books.volumeInfo.authors track by $index">{{authors}} </span></li>
+      <li><b>{{books.volumeInfo.title}}</b></li>
+      <li>by <span ng-repeat="authors in books.volumeInfo.authors track by $index">{{authors}} </span></li>
       <li>Pages: {{books.volumeInfo.pageCount}}</li>
+      <li><em>{{books.volumeInfo.description}}</em></li>
     </ul>
     <ul class="recommend-book-button-list">
       <li><button ng-click="rb.selectBook($index)">Select This Book</button></li>

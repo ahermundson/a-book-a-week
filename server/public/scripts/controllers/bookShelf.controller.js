@@ -13,6 +13,7 @@ myApp.controller("BookShelfController", ["$http", "BookFactory", "UserFactory", 
     isFirstDisabled: false
   };
 
+
   //Get users books from database
   function getBooks() {
     UserFactory.getCurrentUser()
@@ -20,11 +21,18 @@ myApp.controller("BookShelfController", ["$http", "BookFactory", "UserFactory", 
       BookFactory.getBooks(currentUser)
       .then(function(collection) {
         self.collection = collection;
-        console.log("Collection Returned From Book Factory: ", self.collection);
-        self.totalRead = self.collection.length;
+        self.totalRead = 0;
+        // console.log("Collection Returned From Book Factory: ", self.collection);
+        for (var i = 0; i < self.collection.length; i++) {
+          if (self.collection[i].currently_reading === false) {
+            self.totalRead++;
+          }
+        }
+        console.log(self.totalRead);
         console.log("Total Read: ", self.totalRead);
       });
     });
   };
   getBooks();
+
 }]);
