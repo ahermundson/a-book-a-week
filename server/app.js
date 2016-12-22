@@ -1,3 +1,4 @@
+require('dotenv').config();
 var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
@@ -10,13 +11,10 @@ var books = require('./routes/books');
 var nodemailer = require('nodemailer');
 var User = require('./models/user');
 var cron = require('cron');
-var amazon = require('./routes/amazon');
 
 
 app.use(express.static('server/public'));
 app.use(bodyParser.json());
-
-app.use('/amazon', amazon);
 
 //Connect to database
 mongoConnection.connect();
