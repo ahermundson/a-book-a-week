@@ -87,4 +87,4 @@ function pagesToReadPerDay(days, pages) {
   console.log("Days: " + days + "Pages: ", pages);
   return Math.round(pages / days);
 }
-// cronJob.start();
+cronJob.start();
